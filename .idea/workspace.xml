@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc530dbe-919a-444e-a078-b61c2cc279b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App.xcodeproj/project.pbxproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Assets/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Assets/Assets.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/AccountSelectorViewController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/UserListViewController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ViewController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/Main.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/Main.storyboard" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Developer/Xcode/DerivedData/GithubMessagingApp-cgjouhafngbkkffekdssyjooozmf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,6 +31,7 @@
     <session id="1851813246">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -78,7 +68,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/AccountSelectorViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
+            <state relative-caret-position="1040">
               <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
             </state>
           </provider>
@@ -197,16 +187,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538814679209</updated>
-      <workItem from="1538814683528" duration="3595000" />
+      <workItem from="1538814683528" duration="3968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3595000" />
+    <option name="totallyTimeSpent" value="3968000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15993538" />
       <window_info id="Designer" order="1" />
@@ -258,7 +247,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/AccountSelectorViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
+        <state relative-caret-position="1040">
           <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
