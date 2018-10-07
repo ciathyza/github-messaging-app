@@ -60,6 +60,7 @@ class AccountSelectorViewController : UIViewController
 	
 	@IBAction func onConnectButtonTap(_ sender: Any)
 	{
-		performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
+		GitHubAPI.instance.getUsers()
+		//performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
 	}
 }
