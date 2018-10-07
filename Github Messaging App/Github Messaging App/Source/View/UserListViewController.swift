@@ -46,6 +46,7 @@ class UserListTableViewController: UITableViewController
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "userListCell", for: indexPath) as! UserListTableViewCell
 		cell.labelText = AppDelegate.shared.model.gitHubUsers[indexPath.row].login
+		cell.imageURL = AppDelegate.shared.model.gitHubUsers[indexPath.row].avatarURL
 		return cell
 	}
 }

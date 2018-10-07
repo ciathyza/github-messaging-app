@@ -15,6 +15,7 @@
 		2B48C2E02168B793005E8691 /* AccountSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */; };
 		2B48C2E22168C537005E8691 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E12168C537005E8691 /* UserListViewController.swift */; };
 		2B48C2E6216A3C88005E8691 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */; };
+		C9C9F55869D355B99BEC886F /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */; };
 		C9C9F577F3F6A41A1582DF0C /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9F63524418937A0FA4DD7 /* GitHubAPI.swift */; };
 		C9C9F5F6A3FA7F02D3A78FA6 /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9FD27417FD31A405920AC /* GitHubUser.swift */; };
 		C9C9FA26110EFDE7AD409B7A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */; };
@@ -36,6 +37,7 @@
 		C9C9F63524418937A0FA4DD7 /* GitHubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
 		C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C9C9FD27417FD31A405920AC /* GitHubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
+		C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				2B48C2C92168A1E0005E8691 /* AppDelegate.swift */,
+				2BEA81C0216A47C300A7E3EF /* Extensions */,
 				C9C9F439397E046A3FBFB093 /* GitHub */,
 				C9C9F96358EEDEBA56DDDCDA /* Model */,
 				C9C9FFCE7B2D05E8F5CDF001 /* Util */,
@@ -114,6 +117,14 @@
 				2B48C2E12168C537005E8691 /* UserListViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2BEA81C0216A47C300A7E3EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C9C9F439397E046A3FBFB093 /* GitHub */ = {
@@ -221,6 +232,7 @@
 				C9C9F5F6A3FA7F02D3A78FA6 /* GitHubUser.swift in Sources */,
 				C9C9FF01321734D085A5E6C9 /* Log.swift in Sources */,
 				C9C9FA26110EFDE7AD409B7A /* Model.swift in Sources */,
+				C9C9F55869D355B99BEC886F /* UIImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,10 +18,36 @@ class UserListTableViewCell: UITableViewCell
 	@IBOutlet weak var _imageView:UIImageView!
 	@IBOutlet weak var _label:UILabel!
 	
+	private var _imageURL:String?
+	
+
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Accessors
+	// ----------------------------------------------------------------------------------------------------
 	
 	var labelText:String
 	{
 		get { return _label.text ?? "" }
 		set(value) { _label.text = value }
 	}
+	
+	
+	var imageURL:String?
+	{
+		get { return _imageURL }
+		set(value)
+		{
+			if _imageURL == nil || value != _imageURL
+			{
+				_imageURL = value
+				_imageView.loadImageUsingCache(withUrl: _imageURL!)
+			}
+		}
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Private Methods
+	// ----------------------------------------------------------------------------------------------------
+	
 }
