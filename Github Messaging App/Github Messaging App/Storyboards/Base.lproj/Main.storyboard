@@ -115,24 +115,26 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0jM-sk-WBq">
                                             <rect key="frame" x="16" y="11" width="58" height="58"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="58" id="eaN-iP-IyQ"/>
+                                                <constraint firstAttribute="width" constant="58" id="Vhu-Db-Okm"/>
+                                                <constraint firstAttribute="height" constant="58" id="XZg-3g-Bn8"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15o-ug-H2F">
                                             <rect key="frame" x="82" y="11" width="251" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="58" id="Gv3-aL-lWp"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="15o-ug-H2F" firstAttribute="trailing" secondItem="IR4-qV-CQu" secondAttribute="trailingMargin" id="9rR-dF-8GU"/>
-                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="leading" secondItem="IR4-qV-CQu" secondAttribute="leadingMargin" id="It5-os-9J5"/>
-                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="top" secondItem="IR4-qV-CQu" secondAttribute="topMargin" id="T17-y2-1Vx"/>
-                                        <constraint firstItem="15o-ug-H2F" firstAttribute="bottom" secondItem="IR4-qV-CQu" secondAttribute="bottomMargin" id="aRc-Wi-hnQ"/>
-                                        <constraint firstItem="15o-ug-H2F" firstAttribute="leading" secondItem="0jM-sk-WBq" secondAttribute="trailing" constant="8" id="cYQ-OB-y2U"/>
-                                        <constraint firstItem="15o-ug-H2F" firstAttribute="top" secondItem="IR4-qV-CQu" secondAttribute="topMargin" id="k18-F4-YRZ"/>
-                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="bottom" secondItem="IR4-qV-CQu" secondAttribute="bottomMargin" id="nPS-bl-x5Y"/>
+                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="leading" secondItem="IR4-qV-CQu" secondAttribute="leadingMargin" id="Q43-JR-cRt"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="trailing" secondItem="IR4-qV-CQu" secondAttribute="trailingMargin" id="Waq-FL-FBH"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="centerY" secondItem="IR4-qV-CQu" secondAttribute="centerY" id="fOM-MD-CXa"/>
+                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="centerY" secondItem="IR4-qV-CQu" secondAttribute="centerY" id="n6A-35-3Wh"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="leading" secondItem="0jM-sk-WBq" secondAttribute="trailing" constant="8" id="rDw-LN-gr0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
