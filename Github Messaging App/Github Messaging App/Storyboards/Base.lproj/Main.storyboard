@@ -53,7 +53,7 @@
                                     <action selector="onConnectButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8mi-fp-XmC"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Textarea used for error messages." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toe-fw-6A6">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toe-fw-6A6">
                                 <rect key="frame" x="16" y="340" width="343" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

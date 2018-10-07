@@ -12,20 +12,6 @@ import Foundation
 typealias User = [GitHubUser]
 
 
-// To parse the JSON, add this file to your project and do:
-//
-//   let user = try? newJSONDecoder().decode(User.self, from: jsonData)
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.userTask(with: url) { user, response, error in
-//     if let user = user {
-//       ...
-//     }
-//   }
-//   task.resume()
-
-
 ///
 /// Data model for a GitHub user.
 ///
@@ -68,7 +54,7 @@ struct GitHubUser: Codable
 	
 	public func toString() -> String
 	{
-		return "[GitHubUser id=\(id), login=\(login)]"
+		return "[GitHubUser id=\(id), login=\(login), avatarURL=\(avatarURL)]"
 	}
 }
 
@@ -95,7 +81,9 @@ func newJSONEncoder() -> JSONEncoder
 }
 
 
+// ----------------------------------------------------------------------------------------------------
 // MARK: - URLSession response handlers
+// ----------------------------------------------------------------------------------------------------
 
 extension URLSession
 {

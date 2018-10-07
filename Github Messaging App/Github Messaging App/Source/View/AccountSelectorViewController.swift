@@ -60,7 +60,33 @@ class AccountSelectorViewController : UIViewController
 	
 	@IBAction func onConnectButtonTap(_ sender: Any)
 	{
+		toggleControls(false)
+		_infoTextArea.text = "Retrieving data ..."
+		
 		GitHubAPI.instance.getUsers()
+		{
+			(userArray:[GitHubUser]?, error:String?) in
+			if let error = error
+			{
+				self._infoTextArea.text = error
+				self.toggleControls(true)
+			}
+			if let a = userArray
+			{
+				self._infoTextArea.text = "Retrieved \(a.count) GitHub users."
+			}
+		}
 		//performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Private Methods
+	// ----------------------------------------------------------------------------------------------------
+	
+	private func toggleControls(_ on:Bool)
+	{
+		_inputTextField.isEnabled = on
+		_connectButton.isEnabled = on
 	}
 }
