@@ -9,8 +9,9 @@
 import Foundation
 
 
-typealias User = [GitHubUser]
 
+
+typealias User = [GitHubUser]
 
 ///
 /// Data model for a GitHub user.

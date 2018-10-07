@@ -12,8 +12,17 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
-	var window:UIWindow?
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Properties
+	// ----------------------------------------------------------------------------------------------------
 	
+	var window:UIWindow?
+	var model = Model()
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Methods
+	// ----------------------------------------------------------------------------------------------------
 	
 	func application(_ application:UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplication.LaunchOptionsKey:Any]?) -> Bool
 	{
@@ -43,5 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	func applicationWillTerminate(_ application:UIApplication)
 	{
+	}
+}
+
+
+extension UIApplicationDelegate
+{
+	static var shared:Self
+	{
+		return UIApplication.shared.delegate! as! Self
 	}
 }

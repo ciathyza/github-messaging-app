@@ -99,19 +99,46 @@
         <!--User List-->
         <scene sceneID="1xH-0g-YQc">
             <objects>
-                <tableViewController id="tBj-t2-T1q" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="izj-wh-nHr">
+                <tableViewController id="tBj-t2-T1q" customClass="UserListTableViewController" customModule="Github_Messaging_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="izj-wh-nHr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userListCell" id="UE8-Ub-wUd">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="userListCell" id="UE8-Ub-wUd" customClass="UserListTableViewCell" customModule="Github_Messaging_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UE8-Ub-wUd" id="IR4-qV-CQu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0jM-sk-WBq">
+                                            <rect key="frame" x="16" y="11" width="58" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="58" id="eaN-iP-IyQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15o-ug-H2F">
+                                            <rect key="frame" x="82" y="11" width="251" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="trailing" secondItem="IR4-qV-CQu" secondAttribute="trailingMargin" id="9rR-dF-8GU"/>
+                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="leading" secondItem="IR4-qV-CQu" secondAttribute="leadingMargin" id="It5-os-9J5"/>
+                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="top" secondItem="IR4-qV-CQu" secondAttribute="topMargin" id="T17-y2-1Vx"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="bottom" secondItem="IR4-qV-CQu" secondAttribute="bottomMargin" id="aRc-Wi-hnQ"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="leading" secondItem="0jM-sk-WBq" secondAttribute="trailing" constant="8" id="cYQ-OB-y2U"/>
+                                        <constraint firstItem="15o-ug-H2F" firstAttribute="top" secondItem="IR4-qV-CQu" secondAttribute="topMargin" id="k18-F4-YRZ"/>
+                                        <constraint firstItem="0jM-sk-WBq" firstAttribute="bottom" secondItem="IR4-qV-CQu" secondAttribute="bottomMargin" id="nPS-bl-x5Y"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="_imageView" destination="0jM-sk-WBq" id="73Y-Zh-dD5"/>
+                                    <outlet property="_label" destination="15o-ug-H2F" id="Da6-w3-H4T"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -125,7 +152,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0P-ib-ulk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1721" y="791"/>
+            <point key="canvasLocation" x="1720.8" y="790.64039408866995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J7a-vt-hi5">

@@ -15,17 +15,17 @@ public class GitHubAPI
 	// MARK: - Singleton
 	// ----------------------------------------------------------------------------------------------------
 	
-	internal static let instance = GitHubAPI()
+	internal static let shared = GitHubAPI()
+	
 	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Constants
 	// ----------------------------------------------------------------------------------------------------
 	
 	private let SERVICE_URL = "https://api.github.com/"
-	
 	private var _urlSession:URLSession
 	
-
+	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Constructor
 	// ----------------------------------------------------------------------------------------------------
@@ -47,29 +47,39 @@ public class GitHubAPI
 	///
 	/// Fetches a number of users from Github.
 	///
-	internal func getUsers(since:Int = 0, callback: @escaping (([GitHubUser]?, String?) -> Void))
+	internal func getUsers(since:Int = 0, callback:@escaping (([GitHubUser]?, String?) -> Void))
 	{
 		let since = since < 0 ? 0 : since
 		if let url = URL(string: "\(SERVICE_URL)users?since=\(since)")
 		{
-			let task = _urlSession.userTask(with: url)
+			/* Fetch data on background process. */
+			DispatchQueue.global(qos: .background).async
 			{
-				data, response, error in
-				if let error = error
+				let task = self._urlSession.userTask(with: url)
 				{
-					callback(nil, error.localizedDescription)
-				}
-				else if let jsonArray = data
-				{
-					var a = [GitHubUser]()
-					for i in jsonArray
+					data, response, error in
+					if let error = error
 					{
-						a.append(i)
+						DispatchQueue.main.async
+						{
+							callback(nil, error.localizedDescription)
+						}
 					}
-					callback(a, nil)
+					else if let jsonArray = data
+					{
+						var a = [GitHubUser]()
+						for i in jsonArray
+						{
+							a.append(i)
+						}
+						DispatchQueue.main.async
+						{
+							callback(a, nil)
+						}
+					}
 				}
+				task.resume()
 			}
-			task.resume()
 		}
 	}
 }

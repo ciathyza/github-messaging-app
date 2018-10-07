@@ -48,6 +48,14 @@ class AccountSelectorViewController : UIViewController
 	}
 	
 	
+	override func viewWillAppear(_ animated:Bool)
+	{
+		super.viewWillAppear(animated)
+		toggleControls(true)
+		_infoTextArea.text = ""
+	}
+	
+	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Handlers
 	// ----------------------------------------------------------------------------------------------------
@@ -63,7 +71,7 @@ class AccountSelectorViewController : UIViewController
 		toggleControls(false)
 		_infoTextArea.text = "Retrieving data ..."
 		
-		GitHubAPI.instance.getUsers()
+		GitHubAPI.shared.getUsers()
 		{
 			(userArray:[GitHubUser]?, error:String?) in
 			if let error = error
@@ -73,10 +81,11 @@ class AccountSelectorViewController : UIViewController
 			}
 			if let a = userArray
 			{
-				self._infoTextArea.text = "Retrieved \(a.count) GitHub users."
+				AppDelegate.shared.model.gitHubUsers = a
+				Log.debug("APP", "Retrieved \(a.count) GitHub users.")
+				self.performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
 			}
 		}
-		//performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
 	}
 	
 	
