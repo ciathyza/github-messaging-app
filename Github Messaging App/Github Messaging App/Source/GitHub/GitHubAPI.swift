@@ -9,6 +9,31 @@
 import Foundation
 
 
+func newJSONDecoder() -> JSONDecoder
+{
+	let decoder = JSONDecoder()
+	if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *)
+	{
+		decoder.dateDecodingStrategy = .iso8601
+	}
+	return decoder
+}
+
+
+func newJSONEncoder() -> JSONEncoder
+{
+	let encoder = JSONEncoder()
+	if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *)
+	{
+		encoder.dateEncodingStrategy = .iso8601
+	}
+	return encoder
+}
+
+
+///
+/// Provides methods to retrieve data from Github, using Github's dev API.
+///
 public class GitHubAPI
 {
 	// ----------------------------------------------------------------------------------------------------
@@ -52,7 +77,7 @@ public class GitHubAPI
 		let since = since < 0 ? 0 : since
 		if let url = URL(string: "\(SERVICE_URL)users?since=\(since)")
 		{
-			/* Fetch data on background process. */
+			/* Fetch data on background thread. */
 			DispatchQueue.global(qos: .background).async
 			{
 				let task = self._urlSession.userTask(with: url)
@@ -72,6 +97,7 @@ public class GitHubAPI
 						{
 							a.append(i)
 						}
+						/* Back to main thread. */
 						DispatchQueue.main.async
 						{
 							callback(a, nil)

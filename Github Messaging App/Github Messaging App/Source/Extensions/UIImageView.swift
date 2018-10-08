@@ -9,6 +9,7 @@
 import UIKit
 
 
+/// Used to cache user thumbnails.
 let imageCache = NSCache<NSString, UIImage>()
 
 
@@ -25,46 +26,48 @@ extension UIImageView
 	{
 		let url = URL(string: urlString)
 		if url == nil { return }
-		//self.image = nil
+		
 		setRoundedImage(nil)
 		
-		// check cached image
+		/* Check if the image is already cached. */
 		if let cachedImage = imageCache.object(forKey: urlString as NSString)
 		{
-			Log.debug("APP", "Reusing cached image for \(urlString).")
-			//self.image = cachedImage
 			setRoundedImage(cachedImage)
 			return
 		}
 		
+		/* If not cached, show load indicator and fetch the image. */
 		let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView.init(style: .gray)
 		addSubview(activityIndicator)
 		activityIndicator.startAnimating()
 		activityIndicator.center = self.center
 		
-		// if not, download image from url
-		URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-			if error != nil
+		/* Load operation. */
+		URLSession.shared.dataTask(with: url!, completionHandler:
+		{
+			(data, response, error) in
+			if let error = error
 			{
-				print(error!)
+				Log.error("APP", "Error loading image: \(error.localizedDescription)")
 				return
 			}
 			
 			DispatchQueue.main.async
 			{
-				if let image = UIImage(data: data!)
+				if let data = data, let image = UIImage(data: data)
 				{
 					imageCache.setObject(image, forKey: urlString as NSString)
-					//self.image = image
-					self.setRoundedImage(image)
 					activityIndicator.removeFromSuperview()
+					self.setRoundedImage(image)
 				}
 			}
-			
 		}).resume()
 	}
 	
-	
+
+	///
+	/// Sets the image as being round instead of being square.
+	///
 	func setRoundedImage(_ image:UIImage?)
 	{
 		self.image = image

@@ -12,11 +12,6 @@ import UIKit
 class UserListTableViewController: UITableViewController
 {
 	// ----------------------------------------------------------------------------------------------------
-	// MARK: - Properties
-	// ----------------------------------------------------------------------------------------------------
-	
-	
-	// ----------------------------------------------------------------------------------------------------
 	// MARK: - iOS Callbacks
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -27,7 +22,7 @@ class UserListTableViewController: UITableViewController
 	
 	
 	// ----------------------------------------------------------------------------------------------------
-	// MARK: - Handlers
+	// MARK: - TableView
 	// ----------------------------------------------------------------------------------------------------
 	
 	override func numberOfSections(in tableView:UITableView) -> Int
@@ -48,5 +43,13 @@ class UserListTableViewController: UITableViewController
 		cell.labelText = AppDelegate.shared.model.gitHubUsers[indexPath.row].login
 		cell.imageURL = AppDelegate.shared.model.gitHubUsers[indexPath.row].avatarURL
 		return cell
+	}
+	
+	
+	override func tableView(_ tableView:UITableView, didSelectRowAt indexPath:IndexPath)
+	{
+		tableView.deselectRow(at: indexPath, animated: true)
+		AppDelegate.shared.model.setCurrentUserFromIndex(indexPath.row)
+		performSegue(withIdentifier: "showChatViewSegue", sender: self)
 	}
 }

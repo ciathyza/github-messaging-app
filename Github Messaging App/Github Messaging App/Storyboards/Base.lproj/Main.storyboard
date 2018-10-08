@@ -151,10 +151,34 @@
                     <navigationItem key="navigationItem" title="User List" id="17g-78-jSS">
                         <barButtonItem key="backBarButtonItem" title="Back" id="otW-z5-Ab1"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="flV-O6-7wl" kind="show" identifier="showChatViewSegue" id="NI0-6D-ddX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0P-ib-ulk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1720.8" y="790.64039408866995"/>
+        </scene>
+        <!--Username-->
+        <scene sceneID="JeD-EU-jAK">
+            <objects>
+                <viewController id="flV-O6-7wl" customClass="ChatViewController" customModule="Github_Messaging_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xkW-3V-OoR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cvA-Vc-D3i"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Username" id="Q1q-d0-TEa">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gj0-cZ-Kbr"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="_navigationItem" destination="Q1q-d0-TEa" id="VA7-7V-bar"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfN-hw-gvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2490" y="791"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J7a-vt-hi5">
