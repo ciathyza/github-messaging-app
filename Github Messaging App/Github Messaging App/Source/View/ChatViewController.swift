@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ChatViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+class ChatViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
 {
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Properties
@@ -98,14 +98,34 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	// MARK: - UICollectionViewDelegate
 	// ----------------------------------------------------------------------------------------------------
 	
+	/// numberOfItemsInSection
 	func collectionView(_ collectionView:UICollectionView, numberOfItemsInSection section:Int) -> Int
 	{
 		return 0
 	}
 	
 	
+	/// cellForItemAt
 	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
 	{
 		return UICollectionViewCell()
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - UICollectionViewDelegateFlowLayout
+	// ----------------------------------------------------------------------------------------------------
+	
+	/// sizeForItemAt
+	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize
+	{
+		return CGSize.zero
+	}
+	
+	
+	/// insetForSectionAt
+	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section:Int) -> UIEdgeInsets
+	{
+		return UIEdgeInsets.zero
 	}
 }
