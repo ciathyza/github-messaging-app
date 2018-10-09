@@ -253,21 +253,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Enter message..." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGC-6A-BaK" userLabel="Text Placeholder">
-                                <rect key="frame" x="0.0" y="2" width="263" height="36"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RD6-Tf-jVt" userLabel="Text Input">
-                                <rect key="frame" x="0.0" y="2" width="263" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="xw0-57-FvE" id="SDk-Ex-u0c"/>
-                                </connections>
-                            </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMb-iL-Iof">
                                 <rect key="frame" x="271" y="2" width="70" height="36"/>
                                 <subviews>
@@ -295,27 +280,33 @@
                                     <constraint firstAttribute="trailing" secondItem="Hk1-Ka-eeh" secondAttribute="trailing" id="pfQ-mh-Nbp"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SgZ-3I-XcD" userLabel="TextField">
+                                <rect key="frame" x="0.0" y="2" width="263" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="RhW-La-WKu"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xw0-57-FvE" id="gjH-PY-bJc"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jMb-iL-Iof" firstAttribute="leading" secondItem="RD6-Tf-jVt" secondAttribute="trailing" constant="8" id="0YR-vA-AH7"/>
-                            <constraint firstItem="jMb-iL-Iof" firstAttribute="leading" secondItem="JGC-6A-BaK" secondAttribute="trailing" constant="8" id="5gW-Rm-WI5"/>
                             <constraint firstAttribute="trailing" secondItem="jMb-iL-Iof" secondAttribute="trailing" constant="2" id="Ax2-Ie-9ir"/>
-                            <constraint firstItem="JGC-6A-BaK" firstAttribute="top" secondItem="Ugc-QS-jjg" secondAttribute="top" constant="2" id="C4F-J6-h6G"/>
-                            <constraint firstItem="JGC-6A-BaK" firstAttribute="leading" secondItem="Ugc-QS-jjg" secondAttribute="leading" id="Em1-fY-MDX"/>
-                            <constraint firstItem="RD6-Tf-jVt" firstAttribute="leading" secondItem="Ugc-QS-jjg" secondAttribute="leading" id="Em3-d8-QWU"/>
-                            <constraint firstAttribute="bottom" secondItem="JGC-6A-BaK" secondAttribute="bottom" constant="2" id="TLM-Kh-p7H"/>
+                            <constraint firstItem="SgZ-3I-XcD" firstAttribute="leading" secondItem="cPX-Zq-VfM" secondAttribute="leading" id="BxK-wo-5c7"/>
+                            <constraint firstItem="SgZ-3I-XcD" firstAttribute="centerY" secondItem="Ugc-QS-jjg" secondAttribute="centerY" id="Mwp-NZ-p4e"/>
                             <constraint firstItem="jMb-iL-Iof" firstAttribute="top" secondItem="Ugc-QS-jjg" secondAttribute="top" constant="2" id="X48-oi-eoY"/>
-                            <constraint firstAttribute="bottom" secondItem="RD6-Tf-jVt" secondAttribute="bottom" constant="2" id="aMa-94-ahv"/>
-                            <constraint firstItem="RD6-Tf-jVt" firstAttribute="top" secondItem="Ugc-QS-jjg" secondAttribute="top" constant="2" id="rJo-fp-Bb8"/>
+                            <constraint firstItem="jMb-iL-Iof" firstAttribute="leading" secondItem="SgZ-3I-XcD" secondAttribute="trailing" constant="8" id="odV-Qx-scb"/>
                             <constraint firstAttribute="bottom" secondItem="jMb-iL-Iof" secondAttribute="bottom" constant="2" id="vRK-Pt-wZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cPX-Zq-VfM"/>
                     </view>
                     <connections>
-                        <outlet property="_placeholderTextView" destination="JGC-6A-BaK" id="LeS-uA-1yy"/>
                         <outlet property="_postbutton" destination="Hk1-Ka-eeh" id="n09-UL-KOc"/>
-                        <outlet property="_textView" destination="RD6-Tf-jVt" id="b1J-US-scQ"/>
+                        <outlet property="_textView" destination="SgZ-3I-XcD" id="FUd-TL-4i6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWk-Ed-Wca" userLabel="First Responder" sceneMemberID="firstResponder"/>

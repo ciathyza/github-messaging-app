@@ -12,14 +12,13 @@ import UIKit
 ///
 /// Manages logic for the message text input field and the send button.
 ///
-class MessageInputViewController: UIViewController, UITextViewDelegate
+class MessageInputViewController: UIViewController, UITextFieldDelegate
 {
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Properties
 	// ----------------------------------------------------------------------------------------------------
 	
-	@IBOutlet weak var _placeholderTextView: UITextView!
-	@IBOutlet weak var _textView:UITextView!
+	@IBOutlet weak var _textView:UITextField!
 	@IBOutlet weak var _postbutton:UIButton!
 	
 
@@ -30,23 +29,15 @@ class MessageInputViewController: UIViewController, UITextViewDelegate
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-
-		// Set initial state for text input view and send button. */
-		_placeholderTextView.isHidden = !_textView.text.isEmpty
-		_postbutton.isEnabled = !_textView.text.isEmpty
+		_textView.delegate = self
+		NotificationCenter.default.addObserver(self, selector: #selector(onTextFieldChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
+		updatePostButton()
 	}
 	
 	
 	override func resignFirstResponder() -> Bool
 	{
-		_textView.resignFirstResponder()
-		return super.resignFirstResponder()
-	}
-	
-	
-	internal func endEditing()
-	{
-		_textView.endEditing(true)
+		return _textView.resignFirstResponder()
 	}
 	
 	
@@ -54,26 +45,29 @@ class MessageInputViewController: UIViewController, UITextViewDelegate
 	// MARK: - UITextViewDelegate
 	// ----------------------------------------------------------------------------------------------------
 	
-	private func textViewDidBeginEditing(_ textView:UITextView)
+	func textFieldDidBeginEditing(_ textField:UITextField)
 	{
-		_placeholderTextView.isHidden = !_textView.text.isEmpty
-		_postbutton.isEnabled = !_textView.text.isEmpty
-		textView.becomeFirstResponder()
+		updatePostButton()
+		textField.becomeFirstResponder()
 	}
 	
 	
-	private func textViewDidEndEditing(_ textView:UITextView)
+	func textFieldDidEndEditing(_ textField:UITextField)
 	{
-		_placeholderTextView.isHidden = !_textView.text.isEmpty
-		_postbutton.isEnabled = !_textView.text.isEmpty
-		textView.resignFirstResponder()
+		updatePostButton()
+		textField.resignFirstResponder()
 	}
 	
 	
-	func textViewDidChange(_ textView:UITextView)
+	func textFieldShouldEndEditing(_ textField:UITextField) -> Bool
 	{
-		_placeholderTextView.isHidden = !_textView.text.isEmpty
-		_postbutton.isEnabled = !_textView.text.isEmpty
+		return true
+	}
+	
+	
+	@objc func onTextFieldChanged(_ notification:NSNotification)
+	{
+		updatePostButton()
 	}
 	
 	
@@ -83,5 +77,22 @@ class MessageInputViewController: UIViewController, UITextViewDelegate
 	
 	@IBAction func onSendButtonTap(_ sender:Any)
 	{
+		if let text = _textView.text
+		{
+			AppDelegate.shared.chatController.sendMessage(text: text)
+			_textView.text = nil
+		}
+		_ = resignFirstResponder()
+		updatePostButton()
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Methods
+	// ----------------------------------------------------------------------------------------------------
+	
+	private func updatePostButton()
+	{
+		_postbutton.isEnabled = _textView.text != nil && !_textView.text!.isEmpty
 	}
 }

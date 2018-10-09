@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	var window:UIWindow?
 	var model = Model()
+	lazy var chatController = ChatController()
 	
 	
 	// ----------------------------------------------------------------------------------------------------

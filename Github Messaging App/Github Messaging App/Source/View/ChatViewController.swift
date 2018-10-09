@@ -43,7 +43,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 		
 		/* Set up tap recognizer to release softkeyboard on input field unfocus. */
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onViewTap(_:)))
-		tapGestureRecognizer.cancelsTouchesInView = false
+		tapGestureRecognizer.cancelsTouchesInView = true
 		view.addGestureRecognizer(tapGestureRecognizer)
 	}
 	
@@ -111,7 +111,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// didSelectItemAt
 	func collectionView(_ collectionView:UICollectionView, didSelectItemAt indexPath:IndexPath)
 	{
-		_inputViewController?.endEditing()
+		_ = _inputViewController?.resignFirstResponder()
 	}
 	
 	
@@ -160,7 +160,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// numberOfItemsInSection
 	func collectionView(_ collectionView:UICollectionView, numberOfItemsInSection section:Int) -> Int
 	{
-		return AppDelegate.shared.model.chatMessages.count
+		return AppDelegate.shared.chatController.messageCount
 	}
 	
 	
@@ -171,8 +171,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// sizeForItemAt
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize
 	{
-		let message = AppDelegate.shared.model.chatMessages[indexPath.row]
-		if let messageText = message.text
+		if let message = AppDelegate.shared.chatController.getMessageAt(index: indexPath.row), let messageText = message.text
 		{
 			let size = CGSize(width: 250, height: 1000)
 			let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)

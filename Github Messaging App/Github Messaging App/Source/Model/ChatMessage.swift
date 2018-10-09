@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Data model object representing a chat message that has been received or sent.
 ///
-class ChatMessage
+internal class ChatMessage
 {
 	var date:Date?
 	var text:String?

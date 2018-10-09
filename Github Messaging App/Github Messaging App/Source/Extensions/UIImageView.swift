@@ -19,8 +19,8 @@ let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView
 {
 	///
-	/// Loads an image from a URL into the image view. If the image is already cached
-	/// it will be pulled from the cache.
+	/// Loads an image from a URL into the image view and caches it.
+	/// If the image is already cached it will be pulled from the cache instead.
 	///
 	func loadImageUsingCache(withUrl urlString:String)
 	{
@@ -66,7 +66,7 @@ extension UIImageView
 	
 
 	///
-	/// Sets the image as being round instead of being square.
+	/// Sets the UIView's image as being round instead of being square.
 	///
 	func setRoundedImage(_ image:UIImage?)
 	{
