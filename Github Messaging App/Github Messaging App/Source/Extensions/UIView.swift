@@ -11,6 +11,9 @@ import UIKit
 
 extension UIView
 {
+	///
+	/// Allows for convenient adding of constraints to any UIView.
+	///
 	func addConstraintsWithFormat(format:String, views:UIView...)
 	{
 		var viewsDictionary = [String: UIView]()

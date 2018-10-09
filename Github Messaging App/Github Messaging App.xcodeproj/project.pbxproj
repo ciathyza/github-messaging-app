@@ -24,6 +24,7 @@
 		C9C9F55869D355B99BEC886F /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */; };
 		C9C9F577F3F6A41A1582DF0C /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9F63524418937A0FA4DD7 /* GitHubAPI.swift */; };
 		C9C9F5F6A3FA7F02D3A78FA6 /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9FD27417FD31A405920AC /* GitHubUser.swift */; };
+		C9C9F6835614165D076A8559 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9FD9B72F82EDB9D0232DA /* JSON.swift */; };
 		C9C9FA26110EFDE7AD409B7A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */; };
 		C9C9FF01321734D085A5E6C9 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9F450BBFF068DD6783A88 /* Log.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		C9C9F78E25631FBAFBD5296E /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C9C9FD27417FD31A405920AC /* GitHubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
+		C9C9FD9B72F82EDB9D0232DA /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				C9C9F450BBFF068DD6783A88 /* Log.swift */,
+				C9C9FD9B72F82EDB9D0232DA /* JSON.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				C9C9F2F2F957244AB67B723E /* URLSession.swift in Sources */,
 				C9C9F4A3CE22D40C42F8B275 /* UIView.swift in Sources */,
 				C9C9F52EE2F36FC61E001460 /* ChatMessage.swift in Sources */,
+				C9C9F6835614165D076A8559 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

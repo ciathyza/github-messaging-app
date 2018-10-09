@@ -27,7 +27,7 @@ extension URLSession
 				completionHandler(nil, response, error)
 				return
 			}
-			completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
+			completionHandler(JSON.decode(data: data), response, nil)
 		}
 	}
 	

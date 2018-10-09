@@ -10,7 +10,7 @@ import UIKit
 
 
 ///
-/// Manages logic for the text input area and the send button.
+/// Manages logic for the message text input field and the send button.
 ///
 class MessageInputViewController: UIViewController, UITextViewDelegate
 {

@@ -10,7 +10,7 @@ import Foundation
 
 
 ///
-/// Common data model for the application.
+/// Central data model for the application.
 ///
 class Model
 {
@@ -28,6 +28,10 @@ class Model
 	// MARK: - Accessors
 	// ----------------------------------------------------------------------------------------------------
 	
+	///
+	/// The current GitHub user used in the chat view.
+	/// Can be nil in case chat view hasn't been opened yet.
+	///
 	public var currentUser:GitHubUser?
 	{
 		get { return _currentUser }
