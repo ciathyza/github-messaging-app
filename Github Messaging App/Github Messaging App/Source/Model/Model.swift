@@ -19,6 +19,8 @@ class Model
 	// ----------------------------------------------------------------------------------------------------
 	
 	public var gitHubUsers = [GitHubUser]()
+	public var chatMessages = [ChatMessage]()
+	
 	private var _currentUser:GitHubUser?
 	
 	

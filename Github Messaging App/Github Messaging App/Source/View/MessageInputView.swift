@@ -44,6 +44,12 @@ class MessageInputViewController: UIViewController, UITextViewDelegate
 	}
 	
 	
+	internal func endEditing()
+	{
+		_textView.endEditing(true)
+	}
+	
+	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - UITextViewDelegate
 	// ----------------------------------------------------------------------------------------------------

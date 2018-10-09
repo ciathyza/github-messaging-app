@@ -186,7 +186,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatMessageCell" id="LRO-kG-Yba">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatMessageCell" id="LRO-kG-Yba" customClass="ChatMessageCellView" customModule="Github_Messaging_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -217,6 +217,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="gj0-cZ-Kbr"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="_bottomConstraint" destination="k6c-uC-GSA" id="k8a-t4-hRq"/>
                         <outlet property="_collectionView" destination="x7R-Y8-W4B" id="j8W-bk-sQp"/>
                         <outlet property="_containerView" destination="gfd-cS-m3e" id="H6s-AF-iWe"/>
                         <outlet property="_navigationItem" destination="Q1q-d0-TEa" id="VA7-7V-bar"/>
@@ -309,6 +310,7 @@
                             <constraint firstItem="RD6-Tf-jVt" firstAttribute="top" secondItem="Ugc-QS-jjg" secondAttribute="top" constant="2" id="rJo-fp-Bb8"/>
                             <constraint firstAttribute="bottom" secondItem="jMb-iL-Iof" secondAttribute="bottom" constant="2" id="vRK-Pt-wZo"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="cPX-Zq-VfM"/>
                     </view>
                     <connections>
                         <outlet property="_placeholderTextView" destination="JGC-6A-BaK" id="LeS-uA-1yy"/>
