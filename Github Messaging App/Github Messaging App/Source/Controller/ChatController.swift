@@ -27,7 +27,7 @@ class ChatController
 	
 	init()
 	{
-		sendMessageTo(user: "mojombo" , text: "Some Test")
+		sendMessageTo(userID: "mojombo" , text: "Some Test")
 	}
 	
 	
@@ -38,27 +38,28 @@ class ChatController
 	///
 	/// Sends a message to the specified user.
 	///
-	internal func sendMessageTo(user:String?, text:String)
+	internal func sendMessageTo(userID:String?, text:String)
 	{
-		if let user = user
+		if let userID = userID
 		{
-			if _chatMessages[user] == nil
+			if _chatMessages[userID] == nil
 			{
-				_chatMessages[user] = [ChatMessage]()
+				_chatMessages[userID] = [ChatMessage]()
 			}
 			
 			let message = ChatMessage()
 			message.text = text
 			message.date = Date()
+			message.userID = userID
 			message.isSender = true
 			
-			if var a = _chatMessages[user]
+			if var a = _chatMessages[userID]
 			{
 				a.append(message)
-				_chatMessages[user] = a
+				_chatMessages[userID] = a
 			}
 			
-			echoMessageFrom(user: user, text: text)
+			echoMessageFrom(userID: userID, text: text)
 		}
 	}
 	
@@ -66,24 +67,25 @@ class ChatController
 	///
 	/// Receives a message from the specified user.
 	///
-	internal func receiveMessageFrom(user:String?, text:String)
+	internal func receiveMessageFrom(userID:String?, text:String)
 	{
-		if let user = user
+		if let userID = userID
 		{
-			if _chatMessages[user] == nil
+			if _chatMessages[userID] == nil
 			{
-				_chatMessages[user] = [ChatMessage]()
+				_chatMessages[userID] = [ChatMessage]()
 			}
 			
 			let message = ChatMessage()
 			message.text = text
 			message.date = Date()
+			message.userID = userID
 			message.isSender = false
 			
-			if var a = _chatMessages[user]
+			if var a = _chatMessages[userID]
 			{
 				a.append(message)
-				_chatMessages[user] = a
+				_chatMessages[userID] = a
 			}
 		}
 	}
@@ -92,29 +94,29 @@ class ChatController
 	///
 	/// Echos a message two times.
 	///
-	internal func echoMessageFrom(user:String?, text:String)
+	internal func echoMessageFrom(userID:String?, text:String)
 	{
-		receiveMessageFrom(user: user, text: "\(text) \(text)")
+		receiveMessageFrom(userID: userID, text: "\(text) \(text)")
 	}
 	
 	
-	internal func getMessageCountFor(user:String?) -> Int
+	internal func getMessageCountFor(userID:String?) -> Int
 	{
-		if let user = user, let messages = _chatMessages[user] { return messages.count }
+		if let userID = userID, let messages = _chatMessages[userID] { return messages.count }
 		return 0
 	}
 	
 	
-	internal func getMessagesFor(user:String?) -> [ChatMessage]?
+	internal func getMessagesFor(userID:String?) -> [ChatMessage]?
 	{
-		if let user = user, let messages = _chatMessages[user] { return messages }
+		if let userID = userID, let messages = _chatMessages[userID] { return messages }
 		return nil
 	}
 	
 	
-	internal func getMessageAtIndexFor(user:String?, index:Int) -> ChatMessage?
+	internal func getMessageAtIndexFor(userID:String?, index:Int) -> ChatMessage?
 	{
-		if let user = user, let messages = _chatMessages[user]
+		if let userID = userID, let messages = _chatMessages[userID]
 		{
 			if index < 0 || index >= messages.count { return nil }
 			return messages[index]

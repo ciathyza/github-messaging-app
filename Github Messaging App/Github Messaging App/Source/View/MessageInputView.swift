@@ -80,7 +80,7 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 		if let text = _textView.text
 		{
 			let currentUserID = AppDelegate.shared.model.currentUser?.login ?? nil
-			AppDelegate.shared.chatController.sendMessageTo(user: currentUserID, text: text)
+			AppDelegate.shared.chatController.sendMessageTo(userID: currentUserID, text: text)
 			_textView.text = nil
 		}
 		_ = resignFirstResponder()

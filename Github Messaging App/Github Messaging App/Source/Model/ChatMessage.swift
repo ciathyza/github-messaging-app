@@ -17,5 +17,5 @@ internal class ChatMessage
 	var date:Date?
 	var text:String?
 	var isSender:NSNumber?
-	var user:GitHubUser?
+	var userID:String?
 }

@@ -131,7 +131,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// numberOfItemsInSection
 	func collectionView(_ collectionView:UICollectionView, numberOfItemsInSection section:Int) -> Int
 	{
-		return _chatController.getMessageCountFor(user: _currentUserID)
+		return _chatController.getMessageCountFor(userID: _currentUserID)
 	}
 	
 	
@@ -139,7 +139,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
 	{
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCellView
-		if let message = _chatController.getMessageAtIndexFor(user: _currentUserID, index: indexPath.row)
+		if let message = _chatController.getMessageAtIndexFor(userID: _currentUserID, index: indexPath.row)
 		{
 			cell.messageTextView.text = message.text
 			if let messageText = message.text
@@ -160,7 +160,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// sizeForItemAt
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize
 	{
-		if let message = _chatController.getMessageAtIndexFor(user: _currentUserID, index: indexPath.row),
+		if let message = _chatController.getMessageAtIndexFor(userID: _currentUserID, index: indexPath.row),
 		   let messageText = message.text
 		{
 			let estimatedFrame = calculateEstimatedCellFrame(messageText)
@@ -191,7 +191,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	
 	func scrollToLastItem()
 	{
-		let lastItem = self._chatController.getMessageCountFor(user: self._currentUserID) - 1
+		let lastItem = self._chatController.getMessageCountFor(userID: self._currentUserID) - 1
 		let indexPath = NSIndexPath(item: lastItem, section: 0)
 		self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
 	}
