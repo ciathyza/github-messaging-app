@@ -29,7 +29,7 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		_textView.delegate = self
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(onTextFieldChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
 		updatePostButton()
 	}
@@ -91,7 +91,10 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Methods
 	// ----------------------------------------------------------------------------------------------------
-	
+
+	///
+	/// Enable or disable the post button.
+	///
 	private func updatePostButton()
 	{
 		_postbutton.isEnabled = _textView.text != nil && !_textView.text!.isEmpty

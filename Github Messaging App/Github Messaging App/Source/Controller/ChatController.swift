@@ -28,21 +28,6 @@ class ChatController
 	init()
 	{
 		sendMessageTo(user: "mojombo" , text: "Some Test")
-		sendMessageTo(user: "mojombo" , text: "Another Test")
-		receiveMessageFrom(user: "mojombo" , text: "Hi there!")
-		sendMessageTo(user: "mojombo" , text: "A very long message with a lot of text and stuff. And more text and letters for extra more text.")
-		sendMessageTo(user: "mojombo" , text: "Du dumme sau!")
-		receiveMessageFrom(user: "mojombo" , text: "Was geht ab?")
-		sendMessageTo(user: "mojombo" , text: "Another text")
-		receiveMessageFrom(user: "mojombo" , text: "A looooooooooooooooong text!!!!")
-		sendMessageTo(user: "mojombo" , text: "Some Test")
-		sendMessageTo(user: "mojombo" , text: "Another Test")
-		receiveMessageFrom(user: "mojombo" , text: "Hi there!")
-		sendMessageTo(user: "mojombo" , text: "A very long message with a lot of text and stuff. And more text and letters for extra more text.")
-		sendMessageTo(user: "mojombo" , text: "Du dumme sau!")
-		receiveMessageFrom(user: "mojombo" , text: "Was geht ab?")
-		sendMessageTo(user: "mojombo" , text: "Another text")
-		receiveMessageFrom(user: "mojombo" , text: "A looooooooooooooooong text!!!!")
 	}
 	
 	
@@ -50,6 +35,9 @@ class ChatController
 	// MARK: - Methods
 	// ----------------------------------------------------------------------------------------------------
 	
+	///
+	/// Sends a message to the specified user.
+	///
 	internal func sendMessageTo(user:String?, text:String)
 	{
 		if let user = user
@@ -69,10 +57,15 @@ class ChatController
 				a.append(message)
 				_chatMessages[user] = a
 			}
+			
+			echoMessageFrom(user: user, text: text)
 		}
 	}
 	
 	
+	///
+	/// Receives a message from the specified user.
+	///
 	internal func receiveMessageFrom(user:String?, text:String)
 	{
 		if let user = user
@@ -93,6 +86,15 @@ class ChatController
 				_chatMessages[user] = a
 			}
 		}
+	}
+	
+
+	///
+	/// Echos a message two times.
+	///
+	internal func echoMessageFrom(user:String?, text:String)
+	{
+		receiveMessageFrom(user: user, text: "\(text) \(text)")
 	}
 	
 	

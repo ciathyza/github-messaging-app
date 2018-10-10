@@ -10,6 +10,7 @@ import UIKit
 
 
 /// Used to cache user thumbnails.
+// TODO Should probably be moved to a nicer place, not in extensions files.
 let imageCache = NSCache<NSString, UIImage>()
 
 

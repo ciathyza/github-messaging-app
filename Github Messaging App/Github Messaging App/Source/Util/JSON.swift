@@ -43,23 +43,6 @@ public class JSON
 	}
 	
 	
-	///
-	/// A reusable JSON encoder.
-	///
-	private static var encoder:JSONEncoder
-	{
-		get
-		{
-			if (_encoder == nil)
-			{
-				_encoder = JSONEncoder()
-				_encoder!.dateEncodingStrategy = .iso8601
-			}
-			return _encoder!
-		}
-	}
-	
-	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Methods
 	// ----------------------------------------------------------------------------------------------------

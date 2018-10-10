@@ -145,7 +145,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 			if let messageText = message.text
 			{
 				let estimatedFrame = calculateEstimatedCellFrame(messageText)
-				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender == nil || !message.isSender!.boolValue)
+				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender != nil && message.isSender!.boolValue)
 			}
 		}
 		

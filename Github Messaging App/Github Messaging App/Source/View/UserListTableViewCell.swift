@@ -9,6 +9,9 @@
 import UIKit
 
 
+///
+/// Cell for the user list table which displays a thumbnail and the user's handle.
+///
 class UserListTableViewCell: UITableViewCell
 {
 	// ----------------------------------------------------------------------------------------------------
@@ -28,7 +31,7 @@ class UserListTableViewCell: UITableViewCell
 	var labelText:String
 	{
 		get { return _label.text ?? "" }
-		set(value) { _label.text = value }
+		set(value) { _label.text = "@\(value)" }
 	}
 	
 	
@@ -44,9 +47,4 @@ class UserListTableViewCell: UITableViewCell
 			}
 		}
 	}
-	
-	
-	// ----------------------------------------------------------------------------------------------------
-	// MARK: - Private Methods
-	// ----------------------------------------------------------------------------------------------------
 }

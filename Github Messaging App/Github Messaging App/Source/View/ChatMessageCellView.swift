@@ -9,6 +9,9 @@
 import UIKit
 
 
+///
+/// Represents a chat message bubble in the chat view.
+///
 class ChatMessageCellView : UICollectionViewCell
 {
 	// ----------------------------------------------------------------------------------------------------
@@ -42,13 +45,12 @@ class ChatMessageCellView : UICollectionViewCell
 		return imageView
 	}()
 	
+	/* Wrapper for text view and bubble image. */
 	let textBubbleView:UIView =
 	{
-		let view = UIView()
-		//view.layer.cornerRadius = 15
-		//view.layer.masksToBounds = true
-		return view
+		return UIView()
 	}()
+	
 	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Init
@@ -85,6 +87,9 @@ class ChatMessageCellView : UICollectionViewCell
 	}
 	
 	
+	///
+	/// Updates the frame of the text message cell according to an estimated frame size.
+	///
 	internal func updateFrame(_ est:CGRect, _ viewWidth:CGFloat, _ rightBubble:Bool = false)
 	{
 		if (!rightBubble)
