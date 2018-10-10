@@ -4,9 +4,8 @@
     <list default="true" id="dc530dbe-919a-444e-a078-b61c2cc279b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatMessageCellView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatMessageCellView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Storyboards/Base.lproj/Main.storyboard" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Developer/Xcode/DerivedData/GithubMessagingApp-cgjouhafngbkkffekdssyjooozmf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,28 +46,28 @@
         <counts>
           <entry key="h" value="1" />
           <entry key="m" value="1" />
-          <entry key="swift" value="315" />
+          <entry key="swift" value="319" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="ObjectiveC" value="2" />
-          <entry key="Swift" value="315" />
+          <entry key="Swift" value="319" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="swift" value="9783" />
+          <entry key="swift" value="9839" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Swift" value="9783" />
+          <entry key="Swift" value="9839" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.appcode.build">
         <counts>
-          <entry key="xcodebuild" value="209" />
+          <entry key="xcodebuild" value="215" />
         </counts>
       </usages-collector>
     </session>
@@ -76,10 +75,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift">
+        <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="229">
+              <caret line="176" column="5" lean-forward="true" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -108,8 +107,8 @@
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/Model.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatMessageCellView.swift" />
-        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" />
       </list>
     </option>
   </component>
@@ -252,18 +251,17 @@
       <workItem from="1539062793138" duration="29445000" />
       <workItem from="1539172749839" duration="2679000" />
       <workItem from="1539175562509" duration="4507000" />
-      <workItem from="1539180523796" duration="3867000" />
+      <workItem from="1539180523796" duration="5312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84331000" />
+    <option name="totallyTimeSpent" value="85776000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1590909" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1590909" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3291506" />
@@ -280,7 +278,7 @@
       <window_info anchor="right" id="Commander" order="2" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Run" internal_type="SLIDING" order="5" type="SLIDING" weight="0.8369906" />
+      <window_info active="true" anchor="right" id="Run" internal_type="SLIDING" order="5" type="SLIDING" visible="true" weight="0.8369906" />
       <window_info anchor="right" id="Structure" order="6" sideWeight="0.50070125" side_tool="true" weight="0.12460815" />
       <window_info anchor="right" id="Messages" internal_type="SLIDING" order="7" type="SLIDING" weight="0.8362069" />
       <window_info anchor="right" id="Notes" order="8" />
@@ -436,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1664">
-          <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatMessageCellView.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1370">
@@ -459,8 +450,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="682">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="176" column="5" lean-forward="true" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
         </state>
       </provider>
     </entry>

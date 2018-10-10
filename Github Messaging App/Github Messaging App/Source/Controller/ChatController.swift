@@ -35,6 +35,14 @@ class ChatController
 		receiveMessageFrom(user: "mojombo" , text: "Was geht ab?")
 		sendMessageTo(user: "mojombo" , text: "Another text")
 		receiveMessageFrom(user: "mojombo" , text: "A looooooooooooooooong text!!!!")
+		sendMessageTo(user: "mojombo" , text: "Some Test")
+		sendMessageTo(user: "mojombo" , text: "Another Test")
+		receiveMessageFrom(user: "mojombo" , text: "Hi there!")
+		sendMessageTo(user: "mojombo" , text: "A very long message with a lot of text and stuff. And more text and letters for extra more text.")
+		sendMessageTo(user: "mojombo" , text: "Du dumme sau!")
+		receiveMessageFrom(user: "mojombo" , text: "Was geht ab?")
+		sendMessageTo(user: "mojombo" , text: "Another text")
+		receiveMessageFrom(user: "mojombo" , text: "A looooooooooooooooong text!!!!")
 	}
 	
 	

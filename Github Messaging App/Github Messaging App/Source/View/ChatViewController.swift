@@ -53,6 +53,12 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	}
 	
 	
+	override func viewWillAppear(_ animated:Bool)
+	{
+		scrollToLastItem()
+	}
+	
+	
 	override func prepare(for segue:UIStoryboardSegue, sender:Any?)
 	{
 		/* Obtain ref to embedded input view controller. */
@@ -90,10 +96,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 					(completed) in
 					if isKeyboardShowing
 					{
-						/* Scroll to last item. */
-						let lastItem = self._chatController.getMessageCountFor(user: self._currentUserID) - 1
-						let indexPath = NSIndexPath(item: lastItem, section: 0)
-						self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+						self.scrollToLastItem()
 					}
 				})
 			}
@@ -170,7 +173,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// insetForSectionAt
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section:Int) -> UIEdgeInsets
 	{
-		return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+		return UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 	}
 	
 	
@@ -183,5 +186,13 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 		let size = CGSize(width: 250, height: 1000)
 		let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
 		return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+	}
+	
+	
+	func scrollToLastItem()
+	{
+		let lastItem = self._chatController.getMessageCountFor(user: self._currentUserID) - 1
+		let indexPath = NSIndexPath(item: lastItem, section: 0)
+		self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
 	}
 }
