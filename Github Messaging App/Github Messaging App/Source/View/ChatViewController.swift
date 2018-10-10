@@ -21,6 +21,8 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	@IBOutlet weak var _bottomConstraint: NSLayoutConstraint!
 	
 	private var _inputViewController:MessageInputViewController?
+	private var _chatController:ChatController!
+	private var _currentUserID:String?
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -30,6 +32,9 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		_chatController = AppDelegate.shared.chatController
+		_currentUserID = AppDelegate.shared.model.currentUser?.login
 		
 		/* Set navitem title to current user's name. */
 		if let user = AppDelegate.shared.model.currentUser
@@ -85,9 +90,10 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 					(completed) in
 					if isKeyboardShowing
 					{
-						//let lastItem = self.fetchedResultsControler.sections![0].numberOfObjects - 1
-						//let indexPath = NSIndexPath(item: lastItem, section: 0)
-						//self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+						/* Scroll to last item. */
+						let lastItem = self._chatController.getMessageCountFor(user: self._currentUserID) - 1
+						let indexPath = NSIndexPath(item: lastItem, section: 0)
+						self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
 					}
 				})
 			}
@@ -115,44 +121,6 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	}
 	
 	
-	/// cellForItemAt
-	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
-	{
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCellView
-		let message = ChatMessage()
-		
-		cell.messageTextView.text = message.text
-		
-		if let messageText = message.text
-		{
-			let size = CGSize(width: 250, height:1000)
-			let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-			let estimatedFrame = NSString(string: messageText).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
-			
-			/* Incoming message. */
-			if message.isSender == nil || !message.isSender!.boolValue
-			{
-				cell.messageTextView.frame = CGRect(x: 48 + 8, y: 0, width: estimatedFrame.width + 16, height: estimatedFrame.height + 20)
-				cell.textBubbleView.frame = CGRect(x: 48 - 10, y: -4, width: estimatedFrame.width + 16 + 8 + 16, height: estimatedFrame.height + 20 + 6)
-				cell.bubbleImageView.image = ChatMessageCellView.leftBubbleImage
-				cell.bubbleImageView.tintColor = UIColor(white: 0.95, alpha: 1)
-				cell.messageTextView.textColor = UIColor.black
-			}
-			/* Outgoing message. */
-			else
-			{
-				cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - 16 - 16 - 8, y: 0, width: estimatedFrame.width + 16, height: estimatedFrame.height + 20)
-				cell.textBubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - 16 - 8 - 16 - 10, y: -4, width: estimatedFrame.width + 16 + 8 + 10, height: estimatedFrame.height + 20 + 6)
-				cell.bubbleImageView.image = ChatMessageCellView.rightBubbleImage
-				cell.bubbleImageView.tintColor = UIColor(red: 0, green: 137 / 255, blue: 249 / 255, alpha: 1)
-				cell.messageTextView.textColor = UIColor.white
-			}
-		}
-		
-		return cell
-	}
-	
-	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - UICollectionViewDataSource
 	// ----------------------------------------------------------------------------------------------------
@@ -160,7 +128,25 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// numberOfItemsInSection
 	func collectionView(_ collectionView:UICollectionView, numberOfItemsInSection section:Int) -> Int
 	{
-		return AppDelegate.shared.chatController.messageCount
+		return _chatController.getMessageCountFor(user: _currentUserID)
+	}
+	
+	
+	/// cellForItemAt
+	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
+	{
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCellView
+		if let message = _chatController.getMessageAtIndexFor(user: _currentUserID, index: indexPath.row)
+		{
+			cell.messageTextView.text = message.text
+			if let messageText = message.text
+			{
+				let estimatedFrame = calculateEstimatedCellFrame(messageText)
+				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender == nil || !message.isSender!.boolValue)
+			}
+		}
+		
+		return cell
 	}
 	
 	
@@ -171,14 +157,13 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// sizeForItemAt
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize
 	{
-		if let message = AppDelegate.shared.chatController.getMessageAt(index: indexPath.row), let messageText = message.text
+		if let message = _chatController.getMessageAtIndexFor(user: _currentUserID, index: indexPath.row),
+		   let messageText = message.text
 		{
-			let size = CGSize(width: 250, height: 1000)
-			let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-			let estimatedFrame = NSString(string: messageText).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
-			return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
+			let estimatedFrame = calculateEstimatedCellFrame(messageText)
+			return CGSize(width: view.frame.width - 32, height: estimatedFrame.height + 20)
 		}
-		return CGSize(width: view.frame.width, height: 100)
+		return CGSize(width: view.frame.width - 32, height: 100)
 	}
 	
 	
@@ -186,5 +171,17 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section:Int) -> UIEdgeInsets
 	{
 		return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Methods
+	// ----------------------------------------------------------------------------------------------------
+	
+	func calculateEstimatedCellFrame(_ text:String) -> CGRect
+	{
+		let size = CGSize(width: 250, height: 1000)
+		let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+		return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
 	}
 }
