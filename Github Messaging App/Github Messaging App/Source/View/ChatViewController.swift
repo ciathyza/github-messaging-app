@@ -33,8 +33,9 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	{
 		super.viewDidLoad()
 		
-		_chatController = AppDelegate.shared.chatController
 		_currentUserID = AppDelegate.shared.model.currentUser?.login
+		_chatController = AppDelegate.shared.chatController
+		_chatController.performFetch()
 		
 		/* Set navitem title to current user's name. */
 		if let user = AppDelegate.shared.model.currentUser
@@ -145,7 +146,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 			if let messageText = message.text
 			{
 				let estimatedFrame = calculateEstimatedCellFrame(messageText)
-				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender != nil && message.isSender!.boolValue)
+				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender)
 			}
 		}
 		

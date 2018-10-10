@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc530dbe-919a-444e-a078-b61c2cc279b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Model.xcdatamodeld/Model.xcdatamodel/contents" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataClass.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataProperties.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Developer/Xcode/DerivedData/GithubMessagingApp-cgjouhafngbkkffekdssyjooozmf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,6 +33,10 @@
     <expand />
     <select />
   </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_2A14A628-D4AC-4A48-9F00-29FB2BFE709E" />
   <component name="FUSProjectUsageTrigger">
     <session id="1851813246">
@@ -47,28 +55,28 @@
         <counts>
           <entry key="h" value="1" />
           <entry key="m" value="1" />
-          <entry key="swift" value="360" />
+          <entry key="swift" value="389" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="ObjectiveC" value="2" />
-          <entry key="Swift" value="360" />
+          <entry key="Swift" value="389" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="swift" value="10693" />
+          <entry key="swift" value="11573" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Swift" value="10693" />
+          <entry key="Swift" value="11573" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.appcode.build">
         <counts>
-          <entry key="xcodebuild" value="227" />
+          <entry key="xcodebuild" value="245" />
         </counts>
       </usages-collector>
     </session>
@@ -76,10 +84,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage.swift">
+        <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="269">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
             </state>
           </provider>
         </entry>
@@ -100,18 +108,20 @@
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/GitHub/GitHubAPI.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Extensions/URLSession.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/Model.swift" />
-        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatMessageCellView.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/MessageInputView.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/UserListTableViewCell.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/UserListViewController.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Util/JSON.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Extensions/UIImageView.swift" />
-        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Extensions/UIApplicationDelegate.swift" />
-        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatUser.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift" />
         <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataProperties.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataClass.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift" />
+        <option value="$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift" />
       </list>
     </option>
   </component>
@@ -183,6 +193,13 @@
               <item name="Source" type="fcab9f18:XcodeViewNode" />
               <item name="Model" type="fcab9f18:XcodeViewNode" />
             </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Github Messaging App" type="1d218c8b:XcodeProjectNode" />
+              <item name="Github Messaging App" type="fcab9f18:XcodeViewNode" />
+              <item name="Source" type="fcab9f18:XcodeViewNode" />
+              <item name="View" type="fcab9f18:XcodeViewNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -234,18 +251,18 @@
       <workItem from="1539062793138" duration="29445000" />
       <workItem from="1539172749839" duration="2679000" />
       <workItem from="1539175562509" duration="4507000" />
-      <workItem from="1539180523796" duration="9263000" />
+      <workItem from="1539180523796" duration="15391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89727000" />
+    <option name="totallyTimeSpent" value="95855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1590909" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1637931" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3291506" />
@@ -321,13 +338,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="185" column="14" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
         </state>
       </provider>
     </entry>
@@ -418,13 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Extensions/UIApplicationDelegate.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -439,13 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatUser.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -455,8 +451,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="224">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataClass.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Model/ChatMessage+CoreDataProperties.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/AppDelegate.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/View/ChatViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Github Messaging App/Github Messaging App/Source/Controller/ChatController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
         </state>
       </provider>
     </entry>

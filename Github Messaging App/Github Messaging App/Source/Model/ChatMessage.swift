@@ -8,11 +8,10 @@
 
 import Foundation
 
-
 ///
 /// Data model object representing a chat message that has been received or sent.
 ///
-internal class ChatMessage
+internal class ChatMessageX
 {
 	var date:Date?
 	var text:String?

@@ -14,6 +14,9 @@
 		2B48C2E02168B793005E8691 /* AccountSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */; };
 		2B48C2E22168C537005E8691 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E12168C537005E8691 /* UserListViewController.swift */; };
 		2B48C2E6216A3C88005E8691 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */; };
+		2B7C4591216E6BBB0067387F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C458F216E6BBB0067387F /* Model.xcdatamodeld */; };
+		2B7C4598216E71E50067387F /* ChatMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C4596216E71E50067387F /* ChatMessage+CoreDataClass.swift */; };
+		2B7C4599216E71E50067387F /* ChatMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C4597216E71E50067387F /* ChatMessage+CoreDataProperties.swift */; };
 		2BEA81C2216B362800A7E3EF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA81C1216B362800A7E3EF /* ChatViewController.swift */; };
 		2BEA81C4216B564800A7E3EF /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA81C3216B564800A7E3EF /* MessageInputView.swift */; };
 		2BEA81C6216B92E700A7E3EF /* ChatMessageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA81C5216B92E700A7E3EF /* ChatMessageCellView.swift */; };
@@ -40,6 +43,9 @@
 		2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectorViewController.swift; sourceTree = "<group>"; };
 		2B48C2E12168C537005E8691 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		2B7C4590216E6BBB0067387F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		2B7C4596216E71E50067387F /* ChatMessage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2B7C4597216E71E50067387F /* ChatMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2BEA81C1216B362800A7E3EF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		2BEA81C3216B564800A7E3EF /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		2BEA81C5216B92E700A7E3EF /* ChatMessageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCellView.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 				2B48C2DC2168A9BE005E8691 /* Assets */,
 				2B48C2DB2168A9A3005E8691 /* Source */,
 				2B48C2DD2168A9D8005E8691 /* Storyboards */,
+				2B7C458F216E6BBB0067387F /* Model.xcdatamodeld */,
 			);
 			path = "Github Messaging App";
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 		C9C9F96358EEDEBA56DDDCDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B7C4596216E71E50067387F /* ChatMessage+CoreDataClass.swift */,
+				2B7C4597216E71E50067387F /* ChatMessage+CoreDataProperties.swift */,
 				C9C9F78E25631FBAFBD5296E /* ChatMessage.swift */,
 				C9C9FD27417FD31A405920AC /* GitHubUser.swift */,
 				C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */,
@@ -255,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7C4599216E71E50067387F /* ChatMessage+CoreDataProperties.swift in Sources */,
 				2B48C2E6216A3C88005E8691 /* UserListTableViewCell.swift in Sources */,
 				2BEA81C6216B92E700A7E3EF /* ChatMessageCellView.swift in Sources */,
 				2B48C2E22168C537005E8691 /* UserListViewController.swift in Sources */,
@@ -270,8 +280,10 @@
 				C9C9F2F2F957244AB67B723E /* URLSession.swift in Sources */,
 				C9C9F4A3CE22D40C42F8B275 /* UIView.swift in Sources */,
 				C9C9F52EE2F36FC61E001460 /* ChatMessage.swift in Sources */,
+				2B7C4598216E71E50067387F /* ChatMessage+CoreDataClass.swift in Sources */,
 				C9C9F6835614165D076A8559 /* JSON.swift in Sources */,
 				C9C9FD2BA291D790676482D4 /* ChatController.swift in Sources */,
+				2B7C4591216E6BBB0067387F /* Model.xcdatamodeld in Sources */,
 				C9C9FEFAB156D9E99A045AAC /* UIApplicationDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +484,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B7C458F216E6BBB0067387F /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B7C4590216E6BBB0067387F /* Model.xcdatamodel */,
+			);
+			currentVersion = 2B7C4590216E6BBB0067387F /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2B48C2BE2168A1E0005E8691 /* Project object */;
 }
