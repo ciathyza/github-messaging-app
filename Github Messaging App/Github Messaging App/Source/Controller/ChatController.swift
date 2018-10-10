@@ -10,25 +10,39 @@ import Foundation
 import CoreData
 
 
+protocol ChatControllerDelegate
+{
+	func onFetchedResultsChanged(type:NSFetchedResultsChangeType, newIndexPath:IndexPath)
+	func onDidChangeContent()
+}
+
 ///
 /// Manages the sending an receiving of chat messages.
 ///
 class ChatController : NSObject, NSFetchedResultsControllerDelegate
 {
 	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Constants
+	// ----------------------------------------------------------------------------------------------------
+	
+	private let ENTITY_NAME = "ChatMessage"
+	
+	
+	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Properties
 	// ----------------------------------------------------------------------------------------------------
 	
+	public var delegate:ChatControllerDelegate?
+	
 	private var _chatMessages = [String:[ChatMessage]]()
-	private var _blockOperations = [BlockOperation]()
 	
 	private lazy var fetchedResultsControler:NSFetchedResultsController =
 	{
 		() -> NSFetchedResultsController<NSFetchRequestResult> in
 		
-		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ChatMessage")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY_NAME)
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-		//fetchRequest.predicate = NSPredicate(format: "userID = %@", self.friend!.name!)
+		fetchRequest.predicate = NSPredicate(format: "userID = %@", self.currentUserID)
 		let delegate = AppDelegate.shared
 		let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.moc, sectionNameKeyPath: nil, cacheName: nil)
 		frc.delegate = self
@@ -43,6 +57,12 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	private var moc:NSManagedObjectContext
 	{
 		get {return AppDelegate.shared.managedObjectContext }
+	}
+	
+	
+	private var currentUserID:String
+	{
+		get { return AppDelegate.shared.model.currentUser?.login ?? "" }
 	}
 	
 	
@@ -110,11 +130,11 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	}
 	
 	
-	internal func getMessageCountFor(userID:String?) -> Int
-	{
-		if let userID = userID, let messages = _chatMessages[userID] { return messages.count }
-		return 0
-	}
+//	internal func getMessageCountFor(userID:String?) -> Int
+//	{
+//		if let userID = userID, let messages = _chatMessages[userID] { return messages.count }
+//		return 0
+//	}
 	
 	
 	internal func getMessageCount() -> Int
@@ -123,27 +143,27 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	}
 	
 	
-	internal func getMessagesFor(userID:String?) -> [ChatMessage]?
+//	internal func getMessagesFor(userID:String?) -> [ChatMessage]?
+//	{
+//		if let userID = userID, let messages = _chatMessages[userID] { return messages }
+//		return nil
+//	}
+	
+	
+//	internal func getMessageAtIndexFor(userID:String?, index:Int) -> ChatMessage?
+//	{
+//		if let userID = userID, let messages = _chatMessages[userID]
+//		{
+//			if index < 0 || index >= messages.count { return nil }
+//			return messages[index]
+//		}
+//		return nil
+//	}
+	
+	
+	internal func getMessageAtIndexPath(indexPath:IndexPath) -> ChatMessage?
 	{
-		if let userID = userID, let messages = _chatMessages[userID] { return messages }
-		return nil
-	}
-	
-	
-	internal func getMessageAtIndexFor(userID:String?, index:Int) -> ChatMessage?
-	{
-		if let userID = userID, let messages = _chatMessages[userID]
-		{
-			if index < 0 || index >= messages.count { return nil }
-			return messages[index]
-		}
-		return nil
-	}
-	
-	
-	internal func getMessageAtIndexPath(indexPath:IndexPath) -> ChatMessage
-	{
-		return fetchedResultsControler.object(at: indexPath) as! ChatMessage
+		return fetchedResultsControler.object(at: indexPath) as? ChatMessage
 	}
 	
 	
@@ -166,11 +186,11 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	func storeChatMessage(_ userID:String, _ text:String, _ isSender:Bool)
 	{
-		let message = NSEntityDescription.insertNewObject(forEntityName: "ChatMessage", into: moc) as! ChatMessage
+		let message = NSEntityDescription.insertNewObject(forEntityName: ENTITY_NAME, into: moc) as! ChatMessage
 		message.text = text
 		message.date = NSDate()
 		message.userID = userID
-		message.isSender = true
+		message.isSender = isSender
 		
 		do
 		{
@@ -187,7 +207,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	func loadChatMessages() -> [ChatMessage]?
 	{
-		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ChatMessage")
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY_NAME)
 		let messages:[ChatMessage]?
 		do
 		{
@@ -207,7 +227,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		do
 		{
-			let entityNames = ["ChatMessage"]
+			let entityNames = [ENTITY_NAME]
 			for entityName in entityNames
 			{
 				let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -232,32 +252,18 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	func controller(_ controller:NSFetchedResultsController<NSFetchRequestResult>, didChange anObject:Any, at indexPath:IndexPath?, for type:NSFetchedResultsChangeType, newIndexPath:IndexPath?)
 	{
-		if type == .insert
+		if let delegate = delegate
 		{
-			_blockOperations.append(BlockOperation(block:
-			{
-				// TODO
-				//self.collectionView?.insertItems(at: [newIndexPath!])
-			}))
+			delegate.onFetchedResultsChanged(type: type, newIndexPath: newIndexPath!)
 		}
 	}
 	
 	
 	func controllerDidChangeContent(_ controller:NSFetchedResultsController<NSFetchRequestResult>)
 	{
-		// TODO
-//		collectionView?.performBatchUpdates(
-//		{
-//			for operation in self.blockOperations
-//			{
-//				operation.start()
-//			}
-//		}, completion:
-//		{
-//			(completed) in
-//			let lastItem = self.fetchedResultsControler.sections![0].numberOfObjects - 1
-//			let indexPath = NSIndexPath(item: lastItem, section: 0)
-//			self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
-//		})
+		if let delegate = delegate
+		{
+			delegate.onDidChangeContent()
+		}
 	}
 }

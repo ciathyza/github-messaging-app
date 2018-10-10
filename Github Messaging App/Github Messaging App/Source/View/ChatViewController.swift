@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 
-class ChatViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
+class ChatViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, ChatControllerDelegate
 {
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Properties
@@ -22,6 +23,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	
 	private var _inputViewController:MessageInputViewController?
 	private var _chatController:ChatController!
+	private var _blockOperations = [BlockOperation]()
 	private var _currentUserID:String?
 	
 	
@@ -35,6 +37,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 		
 		_currentUserID = AppDelegate.shared.model.currentUser?.login
 		_chatController = AppDelegate.shared.chatController
+		_chatController.delegate = self
 		_chatController.performFetch()
 		
 		/* Set navitem title to current user's name. */
@@ -115,6 +118,26 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	
 	
 	// ----------------------------------------------------------------------------------------------------
+	// MARK: - Methods
+	// ----------------------------------------------------------------------------------------------------
+	
+	func calculateEstimatedCellFrame(_ text:String) -> CGRect
+	{
+		let size = CGSize(width: 250, height: 1000)
+		let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+		return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+	}
+	
+	
+	func scrollToLastItem()
+	{
+		let lastItem = self._chatController.getMessageCount() - 1
+		let indexPath = NSIndexPath(item: lastItem, section: 0)
+		self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------
 	// MARK: - UICollectionViewDelegate
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -132,7 +155,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// numberOfItemsInSection
 	func collectionView(_ collectionView:UICollectionView, numberOfItemsInSection section:Int) -> Int
 	{
-		return _chatController.getMessageCountFor(userID: _currentUserID)
+		return _chatController.getMessageCount()
 	}
 	
 	
@@ -140,7 +163,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
 	{
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCellView
-		if let message = _chatController.getMessageAtIndexFor(userID: _currentUserID, index: indexPath.row)
+		if let message = _chatController.getMessageAtIndexPath(indexPath: indexPath)
 		{
 			cell.messageTextView.text = message.text
 			if let messageText = message.text
@@ -161,7 +184,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	/// sizeForItemAt
 	func collectionView(_ collectionView:UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize
 	{
-		if let message = _chatController.getMessageAtIndexFor(userID: _currentUserID, index: indexPath.row),
+		if let message = _chatController.getMessageAtIndexPath(indexPath: indexPath),
 		   let messageText = message.text
 		{
 			let estimatedFrame = calculateEstimatedCellFrame(messageText)
@@ -179,21 +202,33 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	
 	
 	// ----------------------------------------------------------------------------------------------------
-	// MARK: - Methods
+	// MARK: - ChatControllerDelegate
 	// ----------------------------------------------------------------------------------------------------
 	
-	func calculateEstimatedCellFrame(_ text:String) -> CGRect
+	func onFetchedResultsChanged(type:NSFetchedResultsChangeType, newIndexPath:IndexPath)
 	{
-		let size = CGSize(width: 250, height: 1000)
-		let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-		return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+		if type == .insert
+		{
+			_blockOperations.append(BlockOperation(block:
+			{
+				self._collectionView.insertItems(at: [newIndexPath])
+			}))
+		}
 	}
 	
 	
-	func scrollToLastItem()
+	func onDidChangeContent()
 	{
-		let lastItem = self._chatController.getMessageCountFor(userID: self._currentUserID) - 1
-		let indexPath = NSIndexPath(item: lastItem, section: 0)
-		self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+		_collectionView.performBatchUpdates(
+		{
+			for operation in self._blockOperations
+			{
+				operation.start()
+			}
+		}, completion:
+		{
+			(completed) in
+			self.scrollToLastItem()
+		})
 	}
 }
