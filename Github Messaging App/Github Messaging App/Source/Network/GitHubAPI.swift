@@ -52,7 +52,7 @@ public class GitHubAPI
 	///
 	internal func getUsers(since:Int = 0, callback:@escaping (([GitHubUser]?, String?) -> Void))
 	{
-		let since = since < 0 ? 0 : since
+		let since = since < 0 ? 0 : since > Int.max ? Int.max : since
 		if let url = URL(string: "\(SERVICE_URL)users?since=\(since)")
 		{
 			/* Fetch data on background thread. */

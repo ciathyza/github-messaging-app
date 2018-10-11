@@ -9,13 +9,13 @@
 import UIKit
 
 
-class AccountSelectorViewController : UIViewController
+class AccountSelectorViewController : UIViewController, UITextFieldDelegate
 {
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Constants
 	// ----------------------------------------------------------------------------------------------------
 	
-	private let DEFAULT_ACCOUNT_NAME = "ReactiveX"
+	private let DEFAULT_SINCE_VALUE = "0"
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class AccountSelectorViewController : UIViewController
 		
 		if _inputTextField.text?.isEmpty ?? false
 		{
-			_inputTextField.text = DEFAULT_ACCOUNT_NAME;
+			_inputTextField.text = DEFAULT_SINCE_VALUE;
 		}
 	}
 	
@@ -70,21 +70,33 @@ class AccountSelectorViewController : UIViewController
 	@IBAction func onConnectButtonTap(_ sender: Any)
 	{
 		toggleControls(false)
-		_infoTextArea.text = "Retrieving data ..."
-		
-		GitHubAPI.shared.getUsers()
+		_infoTextArea.text = "Retrieving users ..."
+
+		let sinceText = _inputTextField.text ?? "0"
+		if let since = sinceText.isNumber ? Int(sinceText) : 0
 		{
-			(userArray:[GitHubUser]?, error:String?) in
-			if let error = error
+			GitHubAPI.shared.getUsers(since: since)
 			{
-				self._infoTextArea.text = error
-				self.toggleControls(true)
-			}
-			if let a = userArray
-			{
-				AppDelegate.shared.model.gitHubUsers = a
-				Log.debug("APP", "Retrieved \(a.count) GitHub users.")
-				self.performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
+				(userArray:[GitHubUser]?, error:String?) in
+				if let error = error
+				{
+					self._infoTextArea.text = error
+					self.toggleControls(true)
+				}
+				if let a = userArray
+				{
+					AppDelegate.shared.model.gitHubUsers = a
+					Log.debug("APP", "Retrieved \(a.count) GitHub users.")
+					if a.count > 0
+					{
+						self.performSegue(withIdentifier: "showUserListViewSegue", sender: sender)
+					}
+					else
+					{
+						self._infoTextArea.text = "No users were found."
+						self.toggleControls(true)
+					}
+				}
 			}
 		}
 	}
@@ -119,5 +131,19 @@ class AccountSelectorViewController : UIViewController
 		_inputTextField.isEnabled = on
 		_connectButton.isEnabled = on
 		_clearDataButton.isEnabled = on
+	}
+
+	
+	// ----------------------------------------------------------------------------------------------------
+	// MARK: - UITextFieldDelegate
+	// ----------------------------------------------------------------------------------------------------
+	
+	func textField(_ textField:UITextField, shouldChangeCharactersIn range:NSRange, replacementString string:String) -> Bool
+	{
+		guard CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) else
+		{
+			return false
+		}
+		return true
 	}
 }

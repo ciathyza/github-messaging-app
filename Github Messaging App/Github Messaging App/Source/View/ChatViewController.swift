@@ -61,6 +61,12 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	}
 	
 	
+	override func viewDidDisappear(_ animated:Bool)
+	{
+		_chatController.delegate = nil
+	}
+	
+	
 	override func prepare(for segue:UIStoryboardSegue, sender:Any?)
 	{
 		/* Obtain ref to embedded input view controller. */

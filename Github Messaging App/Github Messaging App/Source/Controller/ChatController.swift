@@ -202,9 +202,9 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	func controller(_ controller:NSFetchedResultsController<NSFetchRequestResult>, didChange anObject:Any, at indexPath:IndexPath?, for type:NSFetchedResultsChangeType, newIndexPath:IndexPath?)
 	{
-		if let delegate = delegate
+		if let delegate = delegate, let newIndexPath = newIndexPath
 		{
-			delegate.onFetchedResultsChanged(type: type, newIndexPath: newIndexPath!)
+			delegate.onFetchedResultsChanged(type: type, newIndexPath: newIndexPath)
 		}
 	}
 	
