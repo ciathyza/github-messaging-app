@@ -16,6 +16,7 @@ import CoreData
 protocol ChatControllerDelegate
 {
 	func onFetchedResultsChanged(type:NSFetchedResultsChangeType, newIndexPath:IndexPath)
+	func onWillChangeContent()
 	func onDidChangeContent()
 }
 
@@ -28,7 +29,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	// MARK: - Constants
 	// ----------------------------------------------------------------------------------------------------
 	
-	private let ENTITY_NAME = "ChatMessage"
+	internal static let ENTITY_NAME = "ChatMessage"
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -37,18 +38,23 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	public var delegate:ChatControllerDelegate?
 	
-	private lazy var fetchedResultsController:NSFetchedResultsController =
-	{
-		() -> NSFetchedResultsController<NSFetchRequestResult> in
-		
-		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY_NAME)
-		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-		//let delegate = AppDelegate.shared
-		let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.moc, sectionNameKeyPath: nil, cacheName: nil)
-		frc.delegate = self
-		return frc
-	}()
+	private var _fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>?
 	
+	private var frc:NSFetchedResultsController<NSFetchRequestResult>
+	{
+		get
+		{
+			if _fetchedResultsController == nil
+			{
+				let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ChatController.ENTITY_NAME)
+				fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+				let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.moc, sectionNameKeyPath: nil, cacheName: nil)
+				frc.delegate = self
+				_fetchedResultsController = frc
+			}
+			return _fetchedResultsController!
+		}
+	}
 	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Accessors
@@ -77,8 +83,16 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		if let userID = userID
 		{
+			Log.debug("APP", "Sending message to \(userID) ...")
 			storeChatMessage(userID, text, true)
-			if echo { echoMessageFrom(userID: userID, text: text) }
+			
+			if echo
+			{
+				DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+				{
+					self.echoMessageFrom(userID: userID, text: text)
+				}
+			}
 		}
 	}
 	
@@ -90,6 +104,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		if let userID = userID
 		{
+			Log.debug("APP", "Receiving message from \(userID) ...")
 			storeChatMessage(userID, text, false)
 		}
 	}
@@ -101,6 +116,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	internal func echoMessageFrom(userID:String?, text:String)
 	{
 		receiveMessageFrom(userID: userID, text: "\(text) \(text)")
+		Log.debug("APP", "Echoed message from \(userID ?? "nil").")
 	}
 	
 
@@ -109,7 +125,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	///
 	internal func getMessageCount() -> Int
 	{
-		return fetchedResultsController.sections?[0].numberOfObjects ?? 0
+		return frc.sections?[0].numberOfObjects ?? 0
 	}
 	
 	
@@ -118,7 +134,20 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	///
 	internal func getMessageAtIndexPath(indexPath:IndexPath) -> ChatMessage?
 	{
-		return fetchedResultsController.object(at: indexPath) as? ChatMessage
+		return frc.object(at: indexPath) as? ChatMessage
+	}
+	
+	
+	func isIndexPathValid(_ indexPath:IndexPath) -> Bool
+	{
+		if let sections = frc.sections, indexPath.section < sections.count
+		{
+			if indexPath.row < sections[indexPath.section].numberOfObjects
+			{
+				return true
+			}
+		}
+		return false
 	}
 	
 	
@@ -133,9 +162,9 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		do
 		{
-			fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "userID == %@", self.currentUserID)
-			try fetchedResultsController.performFetch()
-			Log.debug("APP", "Fetched \(fetchedResultsController.sections?[0].numberOfObjects ?? 0) messages.")
+			frc.fetchRequest.predicate = NSPredicate(format: "userID = %@", currentUserID)
+			try frc.performFetch()
+			Log.debug("APP", "Loaded \(frc.sections![0].numberOfObjects) messages for user \(currentUserID) ...")
 		}
 		catch let error
 		{
@@ -143,13 +172,13 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 		}
 	}
 	
-
+	
 	///
 	/// Stores a new chat message persistently.
 	///
 	func storeChatMessage(_ userID:String, _ text:String, _ isSender:Bool)
 	{
-		let message = NSEntityDescription.insertNewObject(forEntityName: ENTITY_NAME, into: moc) as! ChatMessage
+		let message = NSEntityDescription.insertNewObject(forEntityName: ChatController.ENTITY_NAME, into: moc) as! ChatMessage
 		message.text = text
 		message.date = NSDate()
 		message.userID = userID
@@ -164,35 +193,6 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 			Log.error("APP", "Error storing persistent data: \(error.localizedDescription).")
 			return
 		}
-		Log.debug("APP", "Chat message stored.")
-	}
-	
-	
-	///
-	/// Deletes all stored chat messages.
-	///
-	func clearChatMessages() -> Bool
-	{
-		do
-		{
-			let entityNames = [ENTITY_NAME]
-			for entityName in entityNames
-			{
-				let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-				let objects = try (moc.fetch(fetchRequest)) as? [NSManagedObject]
-				for object in objects!
-				{
-					moc.delete(object)
-				}
-			}
-			try (moc.save())
-			return true
-		}
-		catch let error
-		{
-			Log.error("APP", "Error deleting persistent data: \(error.localizedDescription).")
-		}
-		return false
 	}
 	
 	
@@ -205,6 +205,15 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 		if let delegate = delegate, let newIndexPath = newIndexPath
 		{
 			delegate.onFetchedResultsChanged(type: type, newIndexPath: newIndexPath)
+		}
+	}
+	
+	
+	func controllerWillChangeContent(_ controller:NSFetchedResultsController<NSFetchRequestResult>)
+	{
+		if let delegate = delegate
+		{
+			delegate.onWillChangeContent()
 		}
 	}
 	

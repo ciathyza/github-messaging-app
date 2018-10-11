@@ -105,7 +105,7 @@ class AccountSelectorViewController : UIViewController, UITextFieldDelegate
 	@IBAction func onClearDataButtonTap(_ sender:Any)
 	{
 		toggleControls(false)
-		if AppDelegate.shared.chatController.clearChatMessages()
+		if AppDelegate.shared.clearPersistentData()
 		{
 			_infoTextArea.text = "Cleared all persistent data."
 		}

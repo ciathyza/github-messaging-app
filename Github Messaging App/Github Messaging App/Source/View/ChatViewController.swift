@@ -34,9 +34,10 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	{
 		super.viewDidLoad()
 		
-		_chatController = AppDelegate.shared.chatController
+		_chatController = ChatController()
 		_chatController.delegate = self
-		_chatController.loadMessagesForCurrentUser()
+		
+		_inputViewController?.setChatController(_chatController)
 		
 		/* Set navitem title to current user's name. */
 		if let user = AppDelegate.shared.model.currentUser
@@ -52,6 +53,9 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onViewTap(_:)))
 		tapGestureRecognizer.cancelsTouchesInView = true
 		view.addGestureRecognizer(tapGestureRecognizer)
+		
+		_chatController.loadMessagesForCurrentUser()
+		_collectionView.reloadData()
 	}
 	
 	
@@ -136,8 +140,11 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	func scrollToLastItem()
 	{
 		let lastItem = self._chatController.getMessageCount() - 1
-		let indexPath = NSIndexPath(item: lastItem, section: 0)
-		self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+		let indexPath = IndexPath(item: lastItem, section: 0)
+		if _collectionView.isValid(indexPath: indexPath)
+		{
+			self._collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+		}
 	}
 	
 	
@@ -167,13 +174,17 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath:IndexPath) -> UICollectionViewCell
 	{
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCellView
-		if let message = _chatController.getMessageAtIndexPath(indexPath: indexPath)
+		
+		if _chatController.isIndexPathValid(indexPath)
 		{
-			cell.messageTextView.text = message.text
-			if let messageText = message.text
+			if let message = _chatController.getMessageAtIndexPath(indexPath: indexPath)
 			{
-				let estimatedFrame = calculateEstimatedCellFrame(messageText)
-				cell.updateFrame(estimatedFrame, view.frame.width, message.isSender)
+				cell.messageTextView.text = message.text
+				if let messageText = message.text
+				{
+					let estimatedFrame = calculateEstimatedCellFrame(messageText)
+					cell.updateFrame(estimatedFrame, view.frame.width, message.isSender)
+				}
 			}
 		}
 		
@@ -218,6 +229,11 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 				self._collectionView.insertItems(at: [newIndexPath])
 			}))
 		}
+	}
+	
+	
+	func onWillChangeContent()
+	{
 	}
 	
 	

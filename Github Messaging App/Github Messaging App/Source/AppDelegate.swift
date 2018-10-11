@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	var window:UIWindow?
 	var model = Model()
-	lazy var chatController = ChatController()
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -54,6 +53,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	func applicationWillTerminate(_ application:UIApplication)
 	{
+	}
+	
+	
+	///
+	/// Deletes all stored chat messages.
+	///
+	func clearPersistentData() -> Bool
+	{
+		do
+		{
+			let entityNames = [ChatController.ENTITY_NAME]
+			for entityName in entityNames
+			{
+				let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+				let objects = try (managedObjectContext.fetch(fetchRequest)) as? [NSManagedObject]
+				for object in objects!
+				{
+					managedObjectContext.delete(object)
+				}
+			}
+			try (managedObjectContext.save())
+			return true
+		}
+		catch let error
+		{
+			Log.error("APP", "Error deleting persistent data: \(error.localizedDescription).")
+		}
+		return false
 	}
 	
 	
@@ -122,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	// MARK: - Core Data Saving support
 	// ----------------------------------------------------------------------------------------------------
 	
-	func saveContext()
+	func saveContext() -> Bool
 	{
 		let context = persistentContainer.viewContext
 		if context.hasChanges
@@ -130,6 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 			do
 			{
 				try context.save()
+				return true
 			}
 			catch
 			{
@@ -137,5 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 				Log.fatal("APP", "Unresolved error: \(nserror), \(nserror.userInfo).")
 			}
 		}
+		return false
 	}
 }

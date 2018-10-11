@@ -21,6 +21,8 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 	@IBOutlet weak var _textView:UITextField!
 	@IBOutlet weak var _postbutton:UIButton!
 	
+	private var _chatController:ChatController!
+	
 
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - iOS Callbacks
@@ -80,7 +82,7 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 		if let text = _textView.text
 		{
 			let currentUserID = AppDelegate.shared.model.currentUser?.login ?? nil
-			AppDelegate.shared.chatController.sendMessageTo(userID: currentUserID, text: text)
+			_chatController.sendMessageTo(userID: currentUserID, text: text)
 			_textView.text = nil
 		}
 		_ = resignFirstResponder()
@@ -92,6 +94,11 @@ class MessageInputViewController: UIViewController, UITextFieldDelegate
 	// MARK: - Methods
 	// ----------------------------------------------------------------------------------------------------
 
+	func setChatController(_ chatController:ChatController)
+	{
+		_chatController = chatController
+	}
+	
 	///
 	/// Enable or disable the post button.
 	///
