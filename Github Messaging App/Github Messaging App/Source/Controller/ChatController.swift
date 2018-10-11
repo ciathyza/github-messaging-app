@@ -73,12 +73,12 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	///
 	/// Sends a message to the specified user.
 	///
-	internal func sendMessageTo(userID:String?, text:String)
+	internal func sendMessageTo(userID:String?, text:String, echo:Bool = true)
 	{
 		if let userID = userID
 		{
 			storeChatMessage(userID, text, true)
-			echoMessageFrom(userID: userID, text: text)
+			if echo { echoMessageFrom(userID: userID, text: text) }
 		}
 	}
 	
@@ -96,7 +96,7 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 
 	///
-	/// Echos a message two times.
+	/// Echos a message two times as a received message.
 	///
 	internal func echoMessageFrom(userID:String?, text:String)
 	{
@@ -143,7 +143,10 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 		}
 	}
 	
-	
+
+	///
+	/// Stores a new chat message persistently.
+	///
 	func storeChatMessage(_ userID:String, _ text:String, _ isSender:Bool)
 	{
 		let message = NSEntityDescription.insertNewObject(forEntityName: ENTITY_NAME, into: moc) as! ChatMessage
@@ -158,14 +161,17 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 		}
 		catch let error
 		{
-			Log.error("APP", "Error storing data: \(error.localizedDescription).")
+			Log.error("APP", "Error storing persistent data: \(error.localizedDescription).")
 			return
 		}
 		Log.debug("APP", "Chat message stored.")
 	}
 	
 	
-	func clearChatMessages()
+	///
+	/// Deletes all stored chat messages.
+	///
+	func clearChatMessages() -> Bool
 	{
 		do
 		{
@@ -180,11 +186,13 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 				}
 			}
 			try (moc.save())
+			return true
 		}
 		catch let error
 		{
-			Log.error("APP", "Error deleting data: \(error.localizedDescription).")
+			Log.error("APP", "Error deleting persistent data: \(error.localizedDescription).")
 		}
+		return false
 	}
 	
 	

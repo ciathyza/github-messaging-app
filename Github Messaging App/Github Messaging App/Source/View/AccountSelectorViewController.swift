@@ -26,6 +26,7 @@ class AccountSelectorViewController : UIViewController
 	@IBOutlet weak var _inputTextField: UITextField!
 	@IBOutlet weak var _connectButton: UIButton!
 	@IBOutlet weak var _infoTextArea: UITextView!
+	@IBOutlet weak var _clearDataButton: UIButton!
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -89,6 +90,26 @@ class AccountSelectorViewController : UIViewController
 	}
 	
 	
+	@IBAction func onClearDataButtonTap(_ sender:Any)
+	{
+		toggleControls(false)
+		if AppDelegate.shared.chatController.clearChatMessages()
+		{
+			_infoTextArea.text = "Cleared all persistent data."
+		}
+		else
+		{
+			_infoTextArea.text = "Failed to clear persistent data!"
+		}
+		
+		/* Short delay before enabling controls again, to prevent hammering. */
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+		{
+			self.toggleControls(true)
+		}
+	}
+	
+	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Private Methods
 	// ----------------------------------------------------------------------------------------------------
@@ -97,5 +118,6 @@ class AccountSelectorViewController : UIViewController
 	{
 		_inputTextField.isEnabled = on
 		_connectButton.isEnabled = on
+		_clearDataButton.isEnabled = on
 	}
 }

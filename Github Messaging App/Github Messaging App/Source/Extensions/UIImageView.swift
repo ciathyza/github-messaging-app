@@ -10,7 +10,7 @@ import UIKit
 
 
 /// Used to cache user thumbnails.
-// TODO Should probably be moved to a nicer place, not in extensions files.
+// TODO Should be moved to a nicer place, not be kept in extensions files.
 let imageCache = NSCache<NSString, UIImage>()
 
 
@@ -50,6 +50,10 @@ extension UIImageView
 			if let error = error
 			{
 				Log.error("APP", "Error loading image: \(error.localizedDescription)")
+				DispatchQueue.main.async
+				{
+					activityIndicator.removeFromSuperview()
+				}
 				return
 			}
 			
