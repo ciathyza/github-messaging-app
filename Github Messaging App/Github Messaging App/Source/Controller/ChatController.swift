@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 
+///
+/// Simple delegate used to have ChatViewController loosely coupled to the ChatController
+///
 protocol ChatControllerDelegate
 {
 	func onFetchedResultsChanged(type:NSFetchedResultsChangeType, newIndexPath:IndexPath)
@@ -34,16 +37,13 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	
 	public var delegate:ChatControllerDelegate?
 	
-	private var _chatMessages = [String:[ChatMessage]]()
-	
-	private lazy var fetchedResultsControler:NSFetchedResultsController =
+	private lazy var fetchedResultsController:NSFetchedResultsController =
 	{
 		() -> NSFetchedResultsController<NSFetchRequestResult> in
 		
 		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY_NAME)
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-		fetchRequest.predicate = NSPredicate(format: "userID = %@", self.currentUserID)
-		let delegate = AppDelegate.shared
+		//let delegate = AppDelegate.shared
 		let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.moc, sectionNameKeyPath: nil, cacheName: nil)
 		frc.delegate = self
 		return frc
@@ -54,15 +54,15 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	// MARK: - Accessors
 	// ----------------------------------------------------------------------------------------------------
 	
-	private var moc:NSManagedObjectContext
-	{
-		get {return AppDelegate.shared.managedObjectContext }
-	}
-	
-	
-	private var currentUserID:String
+	public var currentUserID:String
 	{
 		get { return AppDelegate.shared.model.currentUser?.login ?? "" }
+	}
+
+	
+	private var moc:NSManagedObjectContext
+	{
+		get { return AppDelegate.shared.managedObjectContext }
 	}
 	
 	
@@ -77,19 +77,6 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		if let userID = userID
 		{
-			//if _chatMessages[userID] == nil { _chatMessages[userID] = [ChatMessage]() }
-			//let message = ChatMessage()
-			//message.text = text
-			//message.date = NSDate()
-			//message.userID = userID
-			//message.isSender = true
-			//
-			//if var a = _chatMessages[userID]
-			//{
-			//	a.append(message)
-			//	_chatMessages[userID] = a
-			//}
-			
 			storeChatMessage(userID, text, true)
 			echoMessageFrom(userID: userID, text: text)
 		}
@@ -103,19 +90,6 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 	{
 		if let userID = userID
 		{
-			//if _chatMessages[userID] == nil { _chatMessages[userID] = [ChatMessage]() }
-			//let message = ChatMessage()
-			//message.text = text
-			//message.date = NSDate()
-			//message.userID = userID
-			//message.isSender = false
-			//
-			//if var a = _chatMessages[userID]
-			//{
-			//	a.append(message)
-			//	_chatMessages[userID] = a
-			//}
-			
 			storeChatMessage(userID, text, false)
 		}
 	}
@@ -129,60 +103,46 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 		receiveMessageFrom(userID: userID, text: "\(text) \(text)")
 	}
 	
-	
-//	internal func getMessageCountFor(userID:String?) -> Int
-//	{
-//		if let userID = userID, let messages = _chatMessages[userID] { return messages.count }
-//		return 0
-//	}
-	
-	
+
+	///
+	/// Returns message count for current fetch.
+	///
 	internal func getMessageCount() -> Int
 	{
-		return fetchedResultsControler.sections?[0].numberOfObjects ?? 0
+		return fetchedResultsController.sections?[0].numberOfObjects ?? 0
 	}
 	
 	
-//	internal func getMessagesFor(userID:String?) -> [ChatMessage]?
-//	{
-//		if let userID = userID, let messages = _chatMessages[userID] { return messages }
-//		return nil
-//	}
-	
-	
-//	internal func getMessageAtIndexFor(userID:String?, index:Int) -> ChatMessage?
-//	{
-//		if let userID = userID, let messages = _chatMessages[userID]
-//		{
-//			if index < 0 || index >= messages.count { return nil }
-//			return messages[index]
-//		}
-//		return nil
-//	}
-	
-	
+	///
+	/// Returns the chat message at the specified index path.
+	///
 	internal func getMessageAtIndexPath(indexPath:IndexPath) -> ChatMessage?
 	{
-		return fetchedResultsControler.object(at: indexPath) as? ChatMessage
+		return fetchedResultsController.object(at: indexPath) as? ChatMessage
 	}
 	
 	
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Persistent Data Management
 	// ----------------------------------------------------------------------------------------------------
-	
-	func performFetch()
+
+	///
+	/// Loads all chat messages associated with the currently set user.
+	///
+	func loadMessagesForCurrentUser()
 	{
 		do
 		{
-			try fetchedResultsControler.performFetch()
-			Log.debug("APP", "Fetched \(fetchedResultsControler.sections?[0].numberOfObjects ?? 0) objects.")
+			fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "userID == %@", self.currentUserID)
+			try fetchedResultsController.performFetch()
+			Log.debug("APP", "Fetched \(fetchedResultsController.sections?[0].numberOfObjects ?? 0) messages.")
 		}
 		catch let error
 		{
 			Log.error("APP", "Error performing fetch: \(error.localizedDescription).")
 		}
 	}
+	
 	
 	func storeChatMessage(_ userID:String, _ text:String, _ isSender:Bool)
 	{
@@ -202,24 +162,6 @@ class ChatController : NSObject, NSFetchedResultsControllerDelegate
 			return
 		}
 		Log.debug("APP", "Chat message stored.")
-	}
-	
-	
-	func loadChatMessages() -> [ChatMessage]?
-	{
-		let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITY_NAME)
-		let messages:[ChatMessage]?
-		do
-		{
-			messages = try moc.fetch(request) as? [ChatMessage]
-			Log.debug("APP", "Loaded \(messages?.count ?? 0) chat messages.")
-			return messages
-		}
-		catch let error
-		{
-			Log.error("APP", "Error loading chat messages: \(error.localizedDescription).")
-		}
-		return nil
 	}
 	
 	

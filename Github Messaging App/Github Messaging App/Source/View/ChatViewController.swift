@@ -24,7 +24,6 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	private var _inputViewController:MessageInputViewController?
 	private var _chatController:ChatController!
 	private var _blockOperations = [BlockOperation]()
-	private var _currentUserID:String?
 	
 	
 	// ----------------------------------------------------------------------------------------------------
@@ -35,10 +34,9 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	{
 		super.viewDidLoad()
 		
-		_currentUserID = AppDelegate.shared.model.currentUser?.login
 		_chatController = AppDelegate.shared.chatController
 		_chatController.delegate = self
-		_chatController.performFetch()
+		_chatController.loadMessagesForCurrentUser()
 		
 		/* Set navitem title to current user's name. */
 		if let user = AppDelegate.shared.model.currentUser
