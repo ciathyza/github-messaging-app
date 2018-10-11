@@ -1,5 +1,5 @@
 //
-//  AccountSelectorViewController.swift
+//  EntryViewController.swift
 //  Github Messaging App
 //
 //  Created by Sascha on 2018/10/06.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class AccountSelectorViewController : UIViewController, UITextFieldDelegate
+class EntryViewController: UIViewController, UITextFieldDelegate
 {
 	// ----------------------------------------------------------------------------------------------------
 	// MARK: - Constants

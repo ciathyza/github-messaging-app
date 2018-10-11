@@ -11,7 +11,7 @@
 		2B48C2CF2168A1E0005E8691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B48C2CD2168A1E0005E8691 /* Main.storyboard */; };
 		2B48C2D12168A1E2005E8691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B48C2D02168A1E2005E8691 /* Assets.xcassets */; };
 		2B48C2D42168A1E2005E8691 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B48C2D22168A1E2005E8691 /* LaunchScreen.storyboard */; };
-		2B48C2E02168B793005E8691 /* AccountSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */; };
+		2B48C2E02168B793005E8691 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2DF2168B793005E8691 /* EntryViewController.swift */; };
 		2B48C2E22168C537005E8691 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E12168C537005E8691 /* UserListViewController.swift */; };
 		2B48C2E6216A3C88005E8691 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */; };
 		2B7C4591216E6BBB0067387F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C458F216E6BBB0067387F /* Model.xcdatamodeld */; };
@@ -43,7 +43,7 @@
 		2B48C2D02168A1E2005E8691 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B48C2D32168A1E2005E8691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B48C2D52168A1E2005E8691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectorViewController.swift; sourceTree = "<group>"; };
+		2B48C2DF2168B793005E8691 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		2B48C2E12168C537005E8691 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		2B7C4590216E6BBB0067387F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -141,9 +141,9 @@
 		2B48C2DE2168B742005E8691 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2B48C2DF2168B793005E8691 /* AccountSelectorViewController.swift */,
 				2BEA81C5216B92E700A7E3EF /* ChatMessageCellView.swift */,
 				2BEA81C1216B362800A7E3EF /* ChatViewController.swift */,
+				2B48C2DF2168B793005E8691 /* EntryViewController.swift */,
 				2BEA81C3216B564800A7E3EF /* MessageInputView.swift */,
 				2B48C2E5216A3C88005E8691 /* UserListTableViewCell.swift */,
 				2B48C2E12168C537005E8691 /* UserListViewController.swift */,
@@ -154,12 +154,12 @@
 		2BEA81C0216A47C300A7E3EF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9F79198F4EAB45993821A /* String.swift */,
+				C9C9F3F94905FBB64922D555 /* UIApplicationDelegate.swift */,
+				C9C9FD944283E99E7F04BA62 /* UICollectionView.swift */,
 				C9C9FFBEE2815E4C162438E1 /* UIImageView.swift */,
 				C9C9F3515C8FDF7C780BC551 /* UIView.swift */,
 				C9C9F4D87CDA3F22CC5C1AB0 /* URLSession.swift */,
-				C9C9F3F94905FBB64922D555 /* UIApplicationDelegate.swift */,
-				C9C9F79198F4EAB45993821A /* String.swift */,
-				C9C9FD944283E99E7F04BA62 /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,9 +183,9 @@
 		C9C9F96358EEDEBA56DDDCDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9F78E25631FBAFBD5296E /* ChatMessage.swift */,
 				2B7C4596216E71E50067387F /* ChatMessage+CoreDataClass.swift */,
 				2B7C4597216E71E50067387F /* ChatMessage+CoreDataProperties.swift */,
-				C9C9F78E25631FBAFBD5296E /* ChatMessage.swift */,
 				C9C9FD27417FD31A405920AC /* GitHubUser.swift */,
 				C9C9F8F84A6171D6EC6EF2E7 /* Model.swift */,
 			);
@@ -195,9 +195,9 @@
 		C9C9FFCE7B2D05E8F5CDF001 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9F3A07AA80CB51FDA7F56 /* Interval.swift */,
 				C9C9FD9B72F82EDB9D0232DA /* JSON.swift */,
 				C9C9F450BBFF068DD6783A88 /* Log.swift */,
-				C9C9F3A07AA80CB51FDA7F56 /* Interval.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -277,7 +277,7 @@
 				2B48C2E6216A3C88005E8691 /* UserListTableViewCell.swift in Sources */,
 				2BEA81C6216B92E700A7E3EF /* ChatMessageCellView.swift in Sources */,
 				2B48C2E22168C537005E8691 /* UserListViewController.swift in Sources */,
-				2B48C2E02168B793005E8691 /* AccountSelectorViewController.swift in Sources */,
+				2B48C2E02168B793005E8691 /* EntryViewController.swift in Sources */,
 				2B48C2CA2168A1E0005E8691 /* AppDelegate.swift in Sources */,
 				C9C9F577F3F6A41A1582DF0C /* GitHubAPI.swift in Sources */,
 				C9C9F5F6A3FA7F02D3A78FA6 /* GitHubUser.swift in Sources */,

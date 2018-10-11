@@ -12,7 +12,7 @@
         <!--Fetch Github Users-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AccountSelectorViewController" customModule="Github_Messaging_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EntryViewController" customModule="Github_Messaging_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,7 +332,7 @@
                     </view>
                     <connections>
                         <outlet property="_postbutton" destination="Hk1-Ka-eeh" id="n09-UL-KOc"/>
-                        <outlet property="_textView" destination="SgZ-3I-XcD" id="FUd-TL-4i6"/>
+                        <outlet property="_textField" destination="SgZ-3I-XcD" id="FUd-TL-4i6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWk-Ed-Wca" userLabel="First Responder" sceneMemberID="firstResponder"/>

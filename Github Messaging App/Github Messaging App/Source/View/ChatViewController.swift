@@ -234,6 +234,7 @@ class ChatViewController: UIViewController, UICollectionViewDelegate, UICollecti
 	
 	func onWillChangeContent()
 	{
+		/* Nothing to do here! */
 	}
 	
 	
