@@ -7,7 +7,7 @@ Xcode 10, Swift 4.2
 
 ### Scenario
 
-The app project has been structured so that it's easy for developers unfamiliar with it to find their way around the code. Classes have been written with good OOP practices in mind but as this can be seen as an initial prototype there is of course a lot of room for optimization. I wrote the code so that it is easily changeable and can easily be extended feature-wise. All is standard MVC. I generally make it a priority to keep my code cleanly formatted and free of producing any warnings.
+The app project has been structured so that it's easy for developers unfamiliar with it to find their way around the code. Classes have been written with good OOP practices in mind but as this can be seen as an initial prototype there is of course a lot of room for optimization. I wrote the code so that it is easily changeable and can easily be extended feature-wise. All is standard MVC.
 
 ### Specs
 
